@@ -225,7 +225,7 @@ async def fight_process(bot:Bot,event:GroupMessageEvent,state:T_State=State()):
     if state["enemy"]:
         state["enemy"] = state["enemy"][0]
     else:
-        await fight_request.finish("未检测到合法目标...重新试试吧？",at_sender=True)
+        await fight_request.finish("未检测到合法目标...重新试试吧？\n只接受at或者QQ号哦，复制的at信息会无效...",at_sender=True)
     # 判断是否注册
     if not role_exist(state["self"]):
         await fight_request.finish("你还没有注册哦~\n输入【/注册】获取详细~",at_sender=True)
