@@ -18,7 +18,7 @@ except Exception:
 
 
 
-def money_change(qq,average:int=0,deviation:int=10,date:str=None,time:str=None,note:str='不知道为什么...') -> list:
+def money_change(qq,average:int=0,deviation:int=0,date:str=None,time:str=None,note:str='不知道为什么...') -> list:
     '''
     按某标准及最大偏差增长金钱，可记录金钱变化日期时间与备注,并返回随机出的金钱变化值和存储后的金钱值。
     :param qq: 需要增长金钱的qq号
