@@ -21,9 +21,10 @@ class Skill:
         根据配置项内的"hurt"，"hurt_increase"结合Fighter计算初始伤害值
         :rtype: 返回初始伤害值计算后int
         '''
-        fighter_attribute = Counter(one.attribute()) + Counter(self.hurt)
+        basic_attribute = Counter(self.hurt)
+        fighter_attribute = Counter(one.attribute())
         for i,j in self.hurt_increase.items():
-            fighter_attribute[i] = int(fighter_attribute[i]*j/100)
+            fighter_attribute[i] = int(fighter_attribute[i]*j/100) + basic_attribute[i]
         return fighter_attribute
 
     def count_total_increase(self,one):
