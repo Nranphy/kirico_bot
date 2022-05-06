@@ -96,6 +96,8 @@ async def wear_equipment_process(bot:Bot,event:Event,arg:Message=CommandArg(),st
     if not role_exist(qq):
         await wear_equipment.finish("你还未注册哦~\n请输入【/注册账号】了解详细吧~",at_sender=True)
     state["command"] = arg.extract_plain_text().strip().split()
+    if not state["command"]:
+        await wear_equipment.finish("请在指令后输入你想换上的装备哦~\n例子【/穿上装备 xxx xxx】，xxx为装备id，可同时添加多个，用空格分开~",at_sender=True)
     bag_dic = read_bag(qq)
     profession_dic = read_profession(qq)
     for key in state["command"]:
@@ -157,9 +159,11 @@ async def change_skill_process(bot:Bot,event:Event,arg:Message=CommandArg(),stat
     bag_dic = read_bag(qq)
     profession_dic = read_profession(qq)
     state["skill"] = arg.extract_plain_text().strip().split()
+    if not state["skill"]:
+        await change_skill.finish("请在指令后输入你想添加的技能哦~\n例子【/添加技能 xxx xxx】，xxx为技能英文名（注意大小写），可同时添加多个，用空格分开~",at_sender=True)
     for name in state["skill"]:
         if name not in bag_dic["skill"]:
-            await change_skill.finish(f"不能添加你未拥有的技能哦~\n本指令只支持技能英文名，请注意技能写法和下划线~\n出错技能名为【{name}】",at_sender=True)
+            await change_skill.finish(f"不能添加你未拥有的技能哦~\n本指令只支持技能英文名，请注意技能名大小写~\n出错技能名为【{name}】",at_sender=True)
         info = get_skill_info(name)[0]
         if profession_dic["level"] < info["limit"]["level"]:
             await change_skill.finish(f"你的等级不足以使用该技能哦~\n出错技能名为【{name}】，等级限制【{info['limit']['level']}】",at_sender=True)
@@ -183,16 +187,18 @@ unwear_skill = on_command("清除技能",aliases={"技能清除","技能取下",
 async def unwear_skill_process(bot:Bot,event:Event,arg:Message=CommandArg(),state:T_State=State()):
     qq = event.get_user_id()
     if not role_exist(qq):
-        await change_skill.finish("你还未注册哦~\n请输入【/注册账号】了解详细吧~",at_sender=True)
+        await unwear_skill.finish("你还未注册哦~\n请输入【/注册账号】了解详细吧~",at_sender=True)
     profession_dic = read_profession(qq)
     state["skill"] = arg.extract_plain_text().strip().split()
+    if not state["skill"]:
+        await unwear_skill.finish("请在指令后输入你想添加的技能哦~\n例子【/添加技能 xxx xxx】，xxx为技能英文名（注意大小写），可同时添加多个，用空格分开~",at_sender=True)
     for skill in state["skill"]:
         if skill not in profession_dic["skill"]:
             await unwear_skill.finish(f"不能取下未拥有的技能！！\n出错技能名为【{skill}】",at_sender=True)
         profession_dic["skill"].remove(skill)
     save_profession(qq,profession_dic)
     skill_info = get_skill_info(profession_dic["skill"])
-    await change_skill.send('''技能取下成功~\n=========\n【当前技能】\n'''+'\n'.join([f'{x["detail"]["transname"]} ({x["detail"]["name"]})' for x in skill_info])+"\n=========",at_sender=True)
+    await unwear_skill.send('''技能取下成功~\n=========\n【当前技能】\n'''+'\n'.join([f'{x["detail"]["transname"]} ({x["detail"]["name"]})' for x in skill_info])+"\n=========",at_sender=True)
 
 ## 全部换下
 clear_skill = on_command("清空技能",aliases={"技能清空"},priority=7,block=True)
