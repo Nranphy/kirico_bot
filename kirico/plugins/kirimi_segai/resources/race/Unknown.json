@@ -1,0 +1,17 @@
+{
+	"race": "Unknown",
+	"transrace": "未知",
+	"description": "",
+	"initial_status": {
+		"Str": 0,
+		"Agi": 0,
+		"Vit": 0,
+		"Int": 0,
+		"Dex": 0,
+		"Luk": 0
+	},
+	"initial_equipments": ["0","None","None","None","None"],
+	"skill": [
+		[500,"MysteriousPower"]
+	]
+}

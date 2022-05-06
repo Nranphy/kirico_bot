@@ -1,0 +1,23 @@
+{
+	"race": "Elf",
+	"transrace": "精灵",
+	"description": "如诗一般的种族，优雅而长寿。他们常常生活在深林中，拥有更高的智力、敏捷与灵巧。他们或许不如其他种族那般强壮，但论法术和射术，鲜有种族超越他们。",
+	"initial_status": {
+		"Str": 3,
+		"Agi": 7,
+		"Vit": 3,
+		"Int": 8,
+		"Dex": 7,
+		"Luk": 3
+	},
+	"initial_equipments": ["2","None","None","None","None"],
+	"skill": [
+		[5,"ForestSneak"],
+		[10,"NaturalBless"],
+		[15,"SlenderDexterousness"],
+		[25,"ElfRecovery"],
+		[35,"VineMagic"],
+		[40,"PoisonMaster"],
+		[70,"TimelessPerspective"]
+	]
+}

@@ -1,0 +1,69 @@
+{
+	"type": 0,
+	"detail": {
+		"name": "BloodthirstyInstinct",
+		"transname": "嗜血本能",
+		"des": "半兽人的血脉力量...",
+		"story": "半兽人常常痛苦于抑制自身的嗜血本性，但在战场上似乎并不必要...",
+		"function": "造成一次附带吸血效果的近程攻击。"
+	},
+	"limit": {
+		"level": 10,
+		"job": [],
+		"race": ["Half_Elf","Elf","Dragonborn","Human","Unknown","Tiefling"]
+	},
+	"element": "Normal",
+	"consumeSP": 0,
+	"hurt": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 20,
+		"dAtk": 20,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"hurt_increase": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 70,
+		"dAtk": 50,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition": {
+		"HP": 100,
+		"SP": 0,
+		"cAtk": 10,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 10,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition_percent": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	}
+}

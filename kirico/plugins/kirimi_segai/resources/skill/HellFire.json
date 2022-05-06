@@ -1,0 +1,69 @@
+{
+	"type": 2,
+	"detail": {
+		"name": "HellFire",
+		"transname": "地狱之焰",
+		"des": "恶魔们天生的恶魔之力...",
+		"story": "恶魔们自出生便拥有着呼唤地狱之火的力量。",
+		"function": "向对方进行一次法术攻击。"
+	},
+	"limit": {
+		"level": 10,
+		"job": [],
+		"race": ["Elf","Dragonborn","Human","Unknown","Half_Elf","Half_Orc"]
+	},
+	"element": "Fire",
+	"consumeSP": 10,
+	"hurt": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 10,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"hurt_increase": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 90,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition_percent": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	}
+}

@@ -1,0 +1,17 @@
+__kirico_plugin_name__ = ''
+
+__kirico_plugin_author__ = ''
+
+__kirico_plugin_version__ = ''
+
+__kirico_plugin_repositorie__ = ''
+
+__kirico_plugin_description__ = ''
+
+__kirico_plugin_usage__ = '''
+
+'''
+
+__kirico__plugin_visible__ = 
+
+

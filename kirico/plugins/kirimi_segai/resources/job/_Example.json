@@ -1,0 +1,24 @@
+{
+	"job": "This is the English name of the job.",
+	"transrace": "译名",
+	"unaccept_rage": ["which can't become this job."],
+	"accept_level": 0,
+	"accept_job": ["which can bacome this job."],
+	"initial_addition": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"initial_equipments": ["None","None","None","None","None"],
+	"skill": [[0,"name"]],
+	"optional_skill": [[0,"name"]],
+	"jobchange": ["name"]
+}

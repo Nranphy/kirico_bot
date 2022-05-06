@@ -1,0 +1,69 @@
+{
+	"type": 3,
+	"detail": {
+		"name": "BlendAttack",
+		"transname": "混合攻击",
+		"des": "半精灵的融合之力...",
+		"story": "半精灵既有着精灵的灵性，也有着人类的智慧。",
+		"function": "向对手发动一次混合近程远法术攻击力的攻击。"
+	},
+	"limit": {
+		"level": 20,
+		"job": [],
+		"race": ["Half_Orc","Elf","Dragonborn","Human","Unknown","Tiefling"]
+	},
+	"element": "Normal",
+	"consumeSP": 10,
+	"hurt": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 10,
+		"dAtk": 10,
+		"Matk": 10,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"hurt_increase": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 50,
+		"dAtk": 50,
+		"Matk": 50,
+		"Hit": 0,
+		"Cri": 10,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition_percent": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	}
+}

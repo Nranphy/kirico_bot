@@ -1,0 +1,69 @@
+{
+	"type": 3,
+	"detail": {
+		"name": "SatanPossess",
+		"transname": "撒旦附体",
+		"des": "恶魔们天生的恶魔之力...",
+		"story": "恶魔们使体内撒旦的血液显形。",
+		"function": "大幅增强自身属性，并减少大量SP。"
+	},
+	"limit": {
+		"level": 50,
+		"job": [],
+		"race": ["Elf","Dragonborn","Human","Unknown","Half_Elf","Half_Orc"]
+	},
+	"element": "Normal",
+	"consumeSP": 10,
+	"hurt": {
+		"HP": 50,
+		"SP": 0,
+		"cAtk": 30,
+		"dAtk": 30,
+		"Matk": 30,
+		"Hit": 10,
+		"Cri": 10,
+		"Def": 10,
+		"Mdef": 10,
+		"Flee": 10,
+		"Aspd": 10
+	},
+	"hurt_increase": {
+		"HP": 20,
+		"SP": 20,
+		"cAtk": 20,
+		"dAtk": 20,
+		"Matk": 40,
+		"Hit": 10,
+		"Cri": 10,
+		"Def": 10,
+		"Mdef": 10,
+		"Flee": 10,
+		"Aspd": 10
+	},
+	"addition": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition_percent": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	}
+}

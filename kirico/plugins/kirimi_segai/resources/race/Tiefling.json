@@ -1,0 +1,21 @@
+{
+	"race": "Tiefling",
+	"transrace": "恶魔",
+	"description": "世界称他们为提夫林、魔鬼的子嗣，尽管这附外表并非他们所愿。自卑、多疑，他们有着更高的智力与幸运，也因此愿意独行于世间。",
+	"initial_status": {
+		"Str": 4,
+		"Agi": 4,
+		"Vit": 4,
+		"Int": 8,
+		"Dex": 3,
+		"Luk": 6
+	},
+	"initial_equipments": ["3","None","None","None","None"],
+	"skill": [
+		[10,"HellFire"],
+		[15,"VitalityAbsorb"],
+		[20,"TieflingInstinct"],
+		[30,"TieflingMagic"],
+		[50,"SatanPossess"]
+	]
+}
