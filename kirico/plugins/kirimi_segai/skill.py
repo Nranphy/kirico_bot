@@ -23,7 +23,7 @@ class Skill:
         '''
         fighter_attribute = Counter(one.attribute()) + Counter(self.hurt)
         for i,j in self.hurt_increase.items():
-            fighter_attribute[i] = int(fighter_attribute[i]*(100+j)/100)
+            fighter_attribute[i] = int(fighter_attribute[i]*j/100)
         return fighter_attribute
 
     def count_total_increase(self,one):
