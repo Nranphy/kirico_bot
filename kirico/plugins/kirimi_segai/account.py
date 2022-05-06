@@ -166,7 +166,7 @@ async def get_information(bot:Bot, event:GroupMessageEvent):
     bag_skill_info_name = "\n".join([skill.get("detail",{}).get("transname","未知×")+f"（{skill.get('detail',{}).get('name','None')}）" for skill in bag_skill_info])
     pve_record = '\n'.join([f"<{x[0]}> 最小战斗轮数 {x[1]} |最早挑战等级 {x[2]}" for x in honor["beat_boss"]])
     pvp_record = '\n'.join([f"{x[1]}【{x[0]}】的挑战，战斗【{x[2]}】" for x in reversed(honor["fight_record"])])
-    skill_record = '\n'.join([f"【{skill_text_trans(x)}】 （{x}）" for x in profession['skill']])
+    skill_record = '\n'.join([f"【{skill_text_trans(x)[0]}】 （{x}）" for x in profession['skill']])
     msgs = [
 '你的账号信息如下哦~',
 f'''基本信息
