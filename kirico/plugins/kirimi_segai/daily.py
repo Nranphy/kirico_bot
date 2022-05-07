@@ -194,7 +194,7 @@ async def unwear_skill_process(bot:Bot,event:Event,arg:Message=CommandArg(),stat
         await unwear_skill.finish("请在指令后输入你想添加的技能哦~\n例子【/添加技能 xxx xxx】，xxx为技能英文名（注意大小写），可同时添加多个，用空格分开~",at_sender=True)
     for skill in state["skill"]:
         if skill not in profession_dic["skill"]:
-            await unwear_skill.finish(f"不能取下未拥有的技能！！\n出错技能名为【{skill}】",at_sender=True)
+            await unwear_skill.finish(f"不能取下未添加的技能！！\n出错技能名为【{skill}】",at_sender=True)
         profession_dic["skill"].remove(skill)
     save_profession(qq,profession_dic)
     skill_info = get_skill_info(profession_dic["skill"])
