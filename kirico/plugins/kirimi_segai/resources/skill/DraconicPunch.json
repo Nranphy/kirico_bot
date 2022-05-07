@@ -30,7 +30,7 @@
 	"hurt_increase": {
 		"HP": 0,
 		"SP": 0,
-		"cAtk": 110,
+		"cAtk": 90,
 		"dAtk": 0,
 		"Matk": 0,
 		"Hit": 0,

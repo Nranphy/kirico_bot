@@ -241,7 +241,7 @@ def save_honor(qq,new:dict):
     # 根据配置处理记录长度
     kirico_sagai_fight_record_length = kirico_segai_config("kirico_sagai_fight_record_length",5)
     if len(new["fight_record"]) > kirico_sagai_fight_record_length:
-        new["fight_record"] = new["fight_record"][:kirico_sagai_fight_record_length]
+        new["fight_record"] = new["fight_record"][-kirico_sagai_fight_record_length:]
     main_path = os.getcwd()+f"/kirico/data/kirico_segai/{qq}/"
     honor_path = main_path+"honor.json"
     try:

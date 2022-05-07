@@ -168,6 +168,8 @@ f"""敌方
             turn = 1 # 战斗交替
             step += 1
             Aspd_bar += Aspd_difference
+            if self.HP<=0 or ene.HP<=0:
+                break
             if res[2]:
                 res = res[2] # 处理战斗结果，1为友方胜利，2为敌方胜利，3为平局
                 break
@@ -178,6 +180,8 @@ f"""敌方
             turn = 0
             step += 1
             Aspd_bar += Aspd_difference
+            if self.HP<=0 or ene.HP<=0:
+                break
             if res[2]: # 结果逻辑与己方操作相反
                 if res[2]==1: res=2
                 elif res[2]==2: res=1
