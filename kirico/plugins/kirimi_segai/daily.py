@@ -164,6 +164,8 @@ async def change_skill_process(bot:Bot,event:Event,arg:Message=CommandArg(),stat
     for name in state["skill"]:
         if name not in bag_dic["skill"]:
             await change_skill.finish(f"不能添加你未拥有的技能哦~\n本指令只支持技能英文名，请注意技能名大小写~\n出错技能名为【{name}】",at_sender=True)
+        if name in profession_dic["skill"]:
+            await change_skill.finish(f"你已添加过本技能了哦~\n出错技能名为【{name}】",at_sender=True)
         info = get_skill_info(name)[0]
         if profession_dic["level"] < info["limit"]["level"]:
             await change_skill.finish(f"你的等级不足以使用该技能哦~\n出错技能名为【{name}】，等级限制【{info['limit']['level']}】",at_sender=True)
