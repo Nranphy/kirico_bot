@@ -3,6 +3,7 @@ from nonebot.typing import T_State
 from nonebot.params import State
 from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment, GroupMessageEvent
 from nonebot.log import logger
+from kirico.utils.money_utils import money_change
 from kirico.utils.message_utils import send_forward_msg
 from kirico.utils.file_utils import check_dir, check_file, rm_path
 from .utils import get_equipment_info, get_skill_info, job_text_trans, race_text_format, race_text_trans, read_bag, read_basic, read_honor, read_profession, read_statu, save_bag, save_honor, role_exist, save_statu,save_basic,save_profession,get_race_info,attribute_count, skill_text_trans
@@ -260,8 +261,14 @@ async def delete_account(bot:Bot,event:GroupMessageEvent,state:T_State=State()):
 @delete.got("print")
 async def delete_account_success(bot:Bot,event:GroupMessageEvent,state:T_State=State()):
     if state["random_str"] == str(state["print"]):
+        profession = read_profession(event.get_user_id())
+        total_exp = 0
+        for i in range(1,profession["level"]):
+            total_exp += 60*(i+10)**2
+        return_money = int(total_exp*0.7)
+        money_change(event.get_user_id(),return_money,note="删除了雾境账号，返还了一些雾团子...")
         main_path = os.getcwd()+f"/kirico/data/kirico_segai/{event.get_user_id()}/"
         rm_path(main_path)
-        await delete.finish("删除账号成功...\n雾子...还能与你再见吗？",at_sender=True)
+        await delete.finish(f"删除账号成功...根据总经验值返还雾团子【{return_money}】个...\n雾子...还能与你再见吗？",at_sender=True)
     else:
         await delete.finish("验证输入出错×\n删除账号失败...",at_sender=True)

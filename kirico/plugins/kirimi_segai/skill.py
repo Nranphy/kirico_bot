@@ -192,7 +192,12 @@ def Enlightenment(one,two):
 def Escape(one,two):
     name = "Escape"
     self = Skill(get_skill_info(name)[0])
-    return [one,two,3,[f"【{one.name}】使用了技能〖{skill_text_trans(name)[0]}({name})〗，成功逃脱了战局..."]]
+    if one.HP <= 100:
+        return [one,two,3,[f"【{one.name}】使用了技能〖{skill_text_trans(name)[0]}({name})〗，成功逃脱了战局..."]]
+    else:
+        dmg = sum(self.count_total_hurt(one).values())
+        two.HP -= dmg
+        return [one,two,0,[f"【{one.name}】想要使用技能〖{skill_text_trans(name)[0]}({name})〗，但是血量高于100，“不用逃吧...大概...”\n【{one.name}】返身回击，向对方造成了 {dmg} 点伤害..."]]
 
 
 
