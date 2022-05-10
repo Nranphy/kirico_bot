@@ -99,7 +99,7 @@ def fight_between(self:Fighter,ene:Fighter):
 
     def take_action(one:Fighter,two:Fighter):
         '''前者采取行动'''
-        if random.random() <= 0.5+one.Matk/700 and one.skill:
+        if random.random() <= 0.3+one.Matk/700 and one.skill:
             random_skill = random.choice(one.skill)
             if get_skill_info(random_skill)[0]["consumeSP"] <= one.SP:
                 return find_skill(random_skill)(one,two)
