@@ -90,5 +90,3 @@ async def get_plugin_help(bot: Bot, event: Event, state: T_State = State()):
     
     await help_request.reject(f'查询插件帮助成功~\n=========\n【{state["plugins"][state["target"]].name}】\n{plugin_description}=========\n{plugin_usage}\n=========\n若需查询其他插件，请再次输入数字哦~', at_sender=True)
 
-
-# 查询某插件信息指令（作者等等）

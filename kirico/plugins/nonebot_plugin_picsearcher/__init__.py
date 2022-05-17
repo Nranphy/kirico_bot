@@ -26,7 +26,7 @@ __kirico_plugin_name__ = '搜图搜图搜图姬√'
 
 __kirico_plugin_author__ = 'synodriver'
 
-__kirico_plugin_version__ = '0.1.7'
+__kirico_plugin_version__ = '0.1.8'
 
 __kirico_plugin_repositorie__ = 'https://github.com/synodriver/nonebot_plugin_picsearcher'
 
@@ -71,7 +71,7 @@ async def get_des(url: str, mode: str):
             yield msg
 
 
-setu = on_command("搜图", aliases={"search"}, priority=10)
+setu = on_command("搜图", aliases={"search"}, priority=10,block=True)
 
 
 # @setu.handle()

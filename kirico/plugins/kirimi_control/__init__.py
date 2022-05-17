@@ -1,4 +1,5 @@
 from nonebot import on_command, require, get_bot, get_driver
+from nonebot.matcher import Matcher
 from nonebot.typing import T_State
 from nonebot.message import run_preprocessor
 from nonebot.params import State, CommandArg, Arg, MatcherParam, EventParam
@@ -21,10 +22,10 @@ from .switch import *
 # 各种钩子函数
 
 @run_preprocessor
-async def run_preprocessor_process(event: EventParam, matcher: MatcherParam):
+async def run_preprocessor_process(event:Event = EventParam(), matcher:Matcher = MatcherParam):
     plugin_name = matcher.plugin_name
     group_id = event.group_id
-    if isinstance(event,PrivateMessageEvent) or plugin_name=="kirimi_hooks":
+    if isinstance(event,PrivateMessageEvent) or plugin_name==__package__:
         pass # 禁用对本管理插件与私聊信息不生效
     else:
         # 判断是否在该群禁用机器人
