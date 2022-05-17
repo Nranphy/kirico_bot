@@ -26,7 +26,7 @@ groupchat_switch_on = on_command("开启",aliases={"机器人开启","开启机�
 
 
 @plugin_switch_off.handle()
-async def plugin_switch_off_process(bot:Bot, event:GroupMessageEvent, arg:Message):
+async def plugin_switch_off_process(bot:Bot, event:GroupMessageEvent, arg:Message = CommandArg()):
     name = arg.extract_plain_text()
     if not arg:
         await plugin_switch_off.finish("未指定插件名称...请再检查哦。",at_sender=True)
@@ -41,7 +41,7 @@ async def plugin_switch_off_process(bot:Bot, event:GroupMessageEvent, arg:Messag
 
 
 @plugin_switch_on.handle()
-async def plugin_switch_on_process(bot:Bot, event:GroupMessageEvent, arg:Message):
+async def plugin_switch_on_process(bot:Bot, event:GroupMessageEvent, arg:Message = CommandArg()):
     name = arg.extract_plain_text()
     if not arg:
         await plugin_switch_on.finish("未指定插件名称...请再检查哦。",at_sender=True)
