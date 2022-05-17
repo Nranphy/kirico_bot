@@ -28,7 +28,7 @@ async def plugin_switch_off_process(bot:Bot, event:GroupMessageEvent, arg:Messag
     name = arg.extract_plain_text().strip()
     if not arg:
         await plugin_switch_off.finish("未指定插件名称...请再检查哦。",at_sender=True)
-    if arg==__package__:
+    if arg==__package__.split('.')[-1]:
         await plugin_switch_off.finish("不能开关本管理插件哦~\n如果不想要雾子说话的话，请使用指令【/关闭】√",at_sender=True)
     plugins_list_name = sorted(list([x.name for x in get_loaded_plugins()]))
     if name not in plugins_list_name:
@@ -45,7 +45,7 @@ async def plugin_switch_on_process(bot:Bot, event:GroupMessageEvent, arg:Message
     name = arg.extract_plain_text().strip()
     if not arg:
         await plugin_switch_on.finish("未指定插件名称...请再检查哦。",at_sender=True)
-    if arg==__package__:
+    if arg==__package__.split('.')[-1]:
         await plugin_switch_off.finish("不能开关本管理插件哦~\n如果不想要雾子说话的话，请使用指令【/关闭】√",at_sender=True)
     plugins_list_name = sorted(list([x.name for x in get_loaded_plugins()]))
     if name not in plugins_list_name:
