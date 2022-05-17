@@ -15,9 +15,9 @@ plugin_switch_off = on_command("关闭插件",aliases={"插件关闭","禁用插
 
 plugin_switch_on = on_command("开启插件",aliases={"插件开启","启用插件","插件启用"},priority=1,block=True,permission=SUPERUSER|GROUP_OWNER|GROUP_ADMIN)
 
-groupchat_switch_off = on_command("关闭",aliases={"机器人关闭","关闭机器人","关闭群聊"},priority=1,block=True,permission=SUPERUSER|GROUP_OWNER|GROUP_ADMIN)
+groupchat_switch_off = on_command("bot off",aliases={"闭嘴","机器人关闭","关闭机器人","关闭群聊","关闭"},priority=1,block=True,permission=SUPERUSER|GROUP_OWNER|GROUP_ADMIN)
 
-groupchat_switch_on = on_command("开启",aliases={"机器人开启","开启机器人","开启群聊"},priority=1,block=True,permission=SUPERUSER|GROUP_OWNER|GROUP_ADMIN)
+groupchat_switch_on = on_command("bot on",aliases={"说话","机器人开启","开启机器人","开启群聊","开启"},priority=1,block=True,permission=SUPERUSER|GROUP_OWNER|GROUP_ADMIN)
 
 
 
