@@ -28,7 +28,7 @@ __kirico__plugin_visible__ = True
 
 
 
-help_request = on_command("help",aliases={"帮助","菜单"}, priority=5, block=True)
+help_request = on_command("help",aliases={"帮助","菜单","功能"}, priority=5, block=True)
 
 
 
