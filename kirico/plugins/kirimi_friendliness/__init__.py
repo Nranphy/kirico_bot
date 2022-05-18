@@ -9,7 +9,7 @@ __kirico_plugin_name__ = '雾子酱好感度~'
 
 __kirico_plugin_author__ = 'Nranphy'
 
-__kirico_plugin_version__ = '0.1.0'
+__kirico_plugin_version__ = '0.2.0'
 
 __kirico_plugin_repositorie__ = ''
 
@@ -29,7 +29,7 @@ __kirico_plugin_usage__ = '''
 另外，好感度超过一定值时雾子也会主动问好哦~
 ===
 好感度到达一定程度可以和雾子交互哦...
-试试摸摸雾子、和雾子贴贴、亲亲雾子吧~
+请自行探索交互选项吧~
 '''
 
 __kirico__plugin_visible__ = True
@@ -63,14 +63,14 @@ async def friendliness_inquire_request(bot: Bot, event: Event, state: T_State = 
 
 
 # 设置别名
-from .nickname import nickname_setting_request
+from .nickname import *
 
 
 # 雾子酱问候
-from .greetings import morning, midday, afternoon, evening, night
+from .greetings import *
 
 ## 雾子自动问候
-from .greetings_auto import auto_greeting
+from .greetings_auto import *
 
 # 雾子互动
-from .interactivity import touch,tete,kiss,dirty,papa
+from .interactivity import *

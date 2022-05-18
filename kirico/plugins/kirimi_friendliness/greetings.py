@@ -5,36 +5,47 @@ from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment
 from nonebot.log import logger
 from kirico.utils.friendliness_utils import friendliness_inquire, friendliness_change, get_nickname
 from kirico.utils.file_utils import get_date_and_time, check_dir, check_file
+from kirico.utils.config_utils import get_config
+
+from .words_data import words
 import random
 import os
 import json
 
 
+# 还未完成
+class Greeting:
+    '''存放问候命令信息'''
+    def __init__(self,keywords:set, alia:str, trans:str, increase:int, deviation:int, nickname: set = get_config("nickname",{"雾子"})):
+        '''创造问候命令信息类
+        :param keywords: 触发问候关键词
+        :param alia: 问候别名
+        :param trans: 问候标准翻译名
+        :param increase: 成功时增长好感度均值
+        :param deviation: 成功时增长好感度浮动量
+        :param nickname: 机器人名，默认为.env中所设置的
+        '''
+        self.keywords = keywords
+        self.alia = alia
+        self.trans = trans
+        self.increase = increase
+        self.deviation = deviation
+        self.nickname = nickname
+    
+    def construct_pattern(self) -> str:
+        '''根据指令信息返回正则字符串'''
+        greet = '|'.join(list(self.keywords))
+        nickname = '|'.join(list(self.nickname))
+        return ".*?("+greet+").*?"
 
 
-# __kirico_plugin_name__ = '雾子酱问候~'
-
-# __kirico_plugin_author__ = 'Nranphy'
-
-# __kirico_plugin_version__ = '0.0.8'
-
-# __kirico_plugin_repositorie__ = ''
-
-# __kirico_plugin_description__ = '早安哦~米娜桑~☆'
-
-# __kirico_plugin_usage__ = '''
-# 通过每天不同时间的问候来增加雾子的好感度吧~
-# 注意问候语要带上雾子关键词哦√
-# 请不要一直重复问候雾子哦
-# 另外，如果问候的时间错误的话...
-# '''
-
-
-# __kirico__plugin_visible__ = True
-
-
-
-
+commands = [
+    Greeting({"早安","早啊","早哦","早捏","早上好","上午好"},"morning","早安",20,5),
+    Greeting({"午安","中午好"},"noon","午安",20,5),
+    Greeting({"下午好"},"afternoon","下午好",20,5),
+    Greeting({"晚好","晚上好"},"evening","晚上好",20,5),
+    Greeting({"晚安","睡了","寝了","睡觉了","眠了","好梦"},"night","晚安",20,5)
+]
 
 
 
