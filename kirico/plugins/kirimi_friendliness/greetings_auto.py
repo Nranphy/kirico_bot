@@ -43,8 +43,8 @@ async def auto_greeting_process(bot:Bot, event:Event):
         await auto_greeting.finish()
     
     # 通过检测，可以回复。
-    data[event.get_user_id()]["date"] = date_time[0]
-    data[event.get_user_id()]["time"] = date_time[1]
+    data[str(event.get_user_id())]["date"] = date_time[0]
+    data[str(event.get_user_id())]["time"] = date_time[1]
     try:
         with open(cache_path,"w") as f:
             json.dump(data,f)
