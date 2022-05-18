@@ -78,7 +78,7 @@ def create_matchers():
             except:
                 cd_data = {}
             last = cd_data.get(command.alia,["0000-00-00","00:00:00"])
-            if last[0]==date_time[1] and last[1][:2] == date_time[1][:2] and int(last[1][3:5])-int(cd_data[1][3:5])<10:
+            if last[0]==date_time[1] and last[1][:2] == date_time[1][:2] and -10<int(last[1][3:5])-int(cd_data[1][3:5])<10:
                 await matcher.finish(random.choice(words.get(command.alia+"_over",words.get("over",["插件怎么会没有默认冷却回复语呢？..."]))).replace("[NICK]",nickname).replace("[NICKS]",nickname+"的"), at_sender=True)
             # 各项判定已通过
             # 好感度增长
