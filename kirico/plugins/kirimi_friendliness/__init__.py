@@ -49,7 +49,10 @@ friendliness_request = on_command("friendliness", aliases={"查询好感度", "�
 async def friendliness_inquire_request(bot: Bot, event: Event, state: T_State = State()):
     qq = event.get_user_id()
     friendliness_information = friendliness_inquire(qq)
+    interactivity_data = get_interactivity_data(qq)
+
     msg = f"\n查询成功\n=========\n【当前好感度】 {friendliness_information[0]}\n=========\n"
+    msg += "【交互统计】\n"+' | '.join([f"{get_transname(x)}雾子 {y}次" for x,y in interactivity_data.items()]) + "\n=========\n"
     if friendliness_information[1]:
         msg += "【变动记录】\n"
         for i in range(len(friendliness_information[1])-1,-1,-1):

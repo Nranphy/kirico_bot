@@ -1,6 +1,8 @@
+from typing import Union
 from nonebot import on_command, get_bot, get_driver, on_regex
-from nonebot.typing import T_State
+from nonebot.typing import T_State, T_Handler
 from nonebot.params import State
+from nonebot.matcher import Matcher
 from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment
 from nonebot.log import logger
 from kirico.utils.friendliness_utils import friendliness_inquire, friendliness_change, get_nickname
@@ -8,44 +10,65 @@ from kirico.utils.file_utils import get_date_and_time, check_dir, check_file
 from kirico.utils.config_utils import get_config
 
 from .words_data import words
+
 import random
 import os
 import json
 
 
-# 还未完成
-class Greeting:
-    '''存放问候命令信息'''
-    def __init__(self,keywords:set, alia:str, trans:str, increase:int, deviation:int, nickname: set = get_config("nickname",{"雾子"})):
-        '''创造问候命令信息类
-        :param keywords: 触发问候关键词
-        :param alia: 问候别名
-        :param trans: 问候标准翻译名
-        :param increase: 成功时增长好感度均值
-        :param deviation: 成功时增长好感度浮动量
-        :param nickname: 机器人名，默认为.env中所设置的
-        '''
-        self.keywords = keywords
-        self.alia = alia
-        self.trans = trans
-        self.increase = increase
-        self.deviation = deviation
-        self.nickname = nickname
+# # 还未完成，感觉也不必了，问候语不多
+# class Greeting:
+#     '''存放问候命令信息'''
+#     def __init__(self,keywords:set, alia:str, trans:str, increase:int, deviation:int, nickname: set = {"kirico", "Kirico","雾子","雾子酱"}):
+#         '''创造问候命令信息类
+#         :param keywords: 触发问候关键词
+#         :param alia: 问候别名
+#         :param trans: 问候标准翻译名
+#         :param increase: 成功时增长好感度均值
+#         :param deviation: 成功时增长好感度浮动量
+#         :param nickname: 机器人名
+#         '''
+#         self.keywords = keywords
+#         self.alia = alia
+#         self.trans = trans
+#         self.increase = increase
+#         self.deviation = deviation
+#         self.nickname = nickname
     
-    def construct_pattern(self) -> str:
-        '''根据指令信息返回正则字符串'''
-        greet = '|'.join(list(self.keywords))
-        nickname = '|'.join(list(self.nickname))
-        return ".*?("+greet+").*?"
+#     def construct_pattern(self) -> str:
+#         '''根据指令信息返回正则字符串'''
+#         greet = '|'.join(list(self.keywords))
+#         nickname = '|'.join(list(self.nickname))
+#         return ".*?("+greet+").*?"
 
 
-commands = [
-    Greeting({"早安","早啊","早哦","早捏","早上好","上午好"},"morning","早安",20,5),
-    Greeting({"午安","中午好"},"noon","午安",20,5),
-    Greeting({"下午好"},"afternoon","下午好",20,5),
-    Greeting({"晚好","晚上好"},"evening","晚上好",20,5),
-    Greeting({"晚安","睡了","寝了","睡觉了","眠了","好梦"},"night","晚安",20,5)
-]
+# commands = [
+#     Greeting({"早安","早啊","早哦","早捏","早上好","上午好"},"morning","早安",20,5),
+#     Greeting({"午安","中午好"},"noon","午安",20,5),
+#     Greeting({"下午好"},"afternoon","下午好",20,5),
+#     Greeting({"晚好","晚上好"},"evening","晚上好",20,5),
+#     Greeting({"晚安","睡了","寝了","睡觉了","眠了","好梦"},"night","晚安",20,5)
+# ]
+
+
+# def create_matchers():
+#     def construct_handler(command:Greeting) -> T_Handler:
+#         async def handler(matcher:Matcher, bot:Bot, event:Event):
+#             qq = event.get_user_id()
+#             friendliness = friendliness_inquire(qq)[0]
+#             nickname = get_nickname(qq)
+#             date_time = get_date_and_time()
+            
+
+#         return handler
+    
+#     for command in commands:
+#         on_regex(pattern=command.construct_pattern(),priority=7,block=True).append_handler(construct_handler(command))
+
+# create_matchers()
+
+
+
 
 
 
@@ -108,7 +131,10 @@ async def morning_greeting(bot:Bot, event:Event):
         ls = [
             "早安哦~ 今天也是充满希望的一天√",
             f"早安ww {nickname}昨晚有做好梦吗？",
-            f"早~ {nickname}今天要干什么呢~"
+            f"早~ {nickname}今天要干什么呢~",
+            "欸..早..早上好（揉眼睛",
+            "早安呢...有人说，早上要说我爱你才对哦~",
+            "早安~昨晚有梦见雾子吗？"
         ]
         friendliness_change(qq,20,5,note="给雾子说了早安√")
         await morning.send(random.choice(ls), at_sender=True)
@@ -396,7 +422,9 @@ async def night_greeting(bot:Bot, event:Event):
             "晚安哦~今晚会梦到雾子吗~",
             f"晚安！！{nickname}一定会做个好梦的哦~",
             "晚安~ 需要雾子给你唱安眠曲吗~",
-            f"晚安√ {nickname}明天再见哦~"
+            f"晚安√ {nickname}明天再见哦~",
+            f"晚安呢...{nickname}今天要和雾子一起睡吗~",
+            "晚安呢~雾子已经帮你暖好床了哦~",
         ]
         friendliness_change(qq,20,10,note="给雾子说了晚安√")
         await night.send(random.choice(ls), at_sender=True)

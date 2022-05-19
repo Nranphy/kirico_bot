@@ -15,10 +15,11 @@ import json
 
 
 
-auto_greeting = on_regex(pattern=".*?(早啊|早哦|早捏|早安|早上好|上午好|午安|午好|晚好|晚安|晚上好|睡了|碎了|睡觉了|寝了).*?", priority=15)
+auto_greeting = on_regex(pattern=".*?(早啊|早哦|早捏|早安|早上好|上午好|午安|午好|晚好|晚安|晚上好|睡了|碎了|睡觉了|寝了).*?", priority=15,block=True)
 
 @auto_greeting.handle()
 async def auto_greeting_process(bot:Bot, event:Event):
+    qq = event.get_user_id()
     # 好感度判定
     friendliness = friendliness_inquire(event.get_user_id())[0]
     if friendliness<500: 
@@ -32,22 +33,25 @@ async def auto_greeting_process(bot:Bot, event:Event):
     check_file(os.getcwd()+"/data/greetings_auto_cache.json")
     try:
         with open(cache_path,"r") as f:
-            data = json.load(f)
+            cache = json.load(f)
     except:
-        data = dict()
-    if data.get(event.get_user_id(),dict()).get("date","") == date_time[0] and abs(int(data.get(event.get_user_id(),dict()).get("time","99:99:99")[:2]) - int(date_time[1][:2])) <=2:
+        cache = dict()
+    
+    user_cache = cache.get(qq,["0000-00-00","00:00:00"])
+
+    # 次数判定
+    if user_cache[0] == date_time[0] and abs(int(user_cache[1][:2]) - int(date_time[1][:2])) < 3:
         await auto_greeting.finish()
 
     # 概率判断
-    if random.random()<=0.2:
+    if random.random()<=0.4:
         await auto_greeting.finish()
     
     # 通过检测，可以回复。
-    data[str(event.get_user_id())]["date"] = date_time[0]
-    data[str(event.get_user_id())]["time"] = date_time[1]
+    cache[qq] = date_time
     try:
         with open(cache_path,"w") as f:
-            json.dump(data,f)
+            json.dump(cache,f)
     except:
         pass
     ## nickname加入

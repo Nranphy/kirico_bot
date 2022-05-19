@@ -1,3 +1,4 @@
+from typing import Union
 from nonebot import on_command, get_bot, get_driver, on_regex
 from nonebot.typing import T_State, T_Handler
 from nonebot.params import State
@@ -18,7 +19,7 @@ import json
 
 class Interactivity:
     '''存放交互命令信息'''
-    def __init__(self,keywords:set, alia:str, trans:str, friendliness:int, increase:int, deviation:int, nickname: set = get_config("nickname",{"雾子"})):
+    def __init__(self,keywords:set, alia:str, trans:str, friendliness:int, increase:int, deviation:int, nickname: set = {"kirico", "Kirico","雾子","雾子酱"}):
         '''创造交互命令信息类
         :param keywords: 触发交互关键词
         :param alia: 交互行为别名
@@ -26,7 +27,7 @@ class Interactivity:
         :param friendliness: 交互所需好感度
         :param increase: 成功时增长好感度均值
         :param deviation: 成功时增长好感度浮动量
-        :param nickname: 机器人名，默认为.env中所设置的
+        :param nickname: 机器人名
         '''
         self.keywords = keywords
         self.alia = alia
@@ -40,7 +41,7 @@ class Interactivity:
         '''根据指令信息返回正则字符串'''
         action = '|'.join(list(self.keywords))
         nickname = '|'.join(list(self.nickname))
-        return ".*?("+action+").{0,2}?("+nickname+").*?|.*?("+nickname+").{0,2}?("+action+").*?"
+        return ".*?("+action+").{0,3}?("+nickname+").*?|.*?("+nickname+").{0,3}?("+action+").*?"
 
 
 commands = [
@@ -52,8 +53,14 @@ commands = [
     Interactivity({"捏捏","捏","掐"},"nip","捏捏",80,20,5),
     Interactivity({"蹭","蹭蹭"},"rub","蹭蹭",100,20,5),
     Interactivity({"亲","亲亲","啾","啾啾","mua","kiss"},"kiss","亲亲",100,20,10),
-    Interactivity({"肛","啪","透","草","超市","茶包","炒饭","铜丝","橄榄","中出","爆炒"},"sex","啪啪",3000,0,150),
-    Interactivity({"爬","爪巴","滚","傻逼","弱智","脑残","脑瘫","脑弹","智障","废物","fw","垃圾","烧鸡","烧杯"},"dirty","骂",0,-50,50)
+    Interactivity({"肛","啪","透","草","超市","茶包","炒饭","铜丝","橄榄","中出","爆炒"},"sex","啪啪",10000,0,150),
+    Interactivity({"爬","爪巴","滚","傻逼","弱智","脑残","脑瘫","脑弹","智障","废物","fw","垃圾","烧鸡","烧杯"},"dirty","骂",0,-50,50),
+    Interactivity({"老婆"},"wife","叫老婆",3000,20,5),
+    Interactivity({"喜欢","爱"},"like","示爱",100,20,5),
+    Interactivity({"壁咚"},"kabedom","壁咚",100,20,5),
+    Interactivity({"舔","pr","舔舔"},"prpr","舔舔",100,20,5),
+    Interactivity({"可爱","卡哇伊","萌"},"cute","夸可爱",0,20,5),
+    Interactivity({"啃","吃"},"eat","吃",100,20,5)
 ]
 
 
@@ -78,7 +85,7 @@ def create_matchers():
             except:
                 cd_data = {}
             last = cd_data.get(command.alia,["0000-00-00","00:00:00"])
-            if last[0]==date_time[1] and last[1][:2] == date_time[1][:2] and -10<int(last[1][3:5])-int(date_time[1][3:5])<10:
+            if last[0]==date_time[0] and last[1][:2] == date_time[1][:2] and -30<int(last[1][3:5])-int(date_time[1][3:5])<30:
                 await matcher.finish(random.choice(words.get(command.alia+"_over",words.get("over",["插件怎么会没有默认冷却回复语呢？..."]))).replace("[NICK]",nickname).replace("[NICKS]",nickname+"的"), at_sender=True)
             # 各项判定已通过
             # 好感度增长
@@ -114,3 +121,35 @@ def create_matchers():
 
 create_matchers()
 
+
+def get_interactivity_data(qq:Union[str,int]) -> dict:
+    '''返回该qq号的交互次数记录'''
+    try:
+        with open(os.getcwd()+f"/kirico/data/friendliness/interactivity/{qq}.json") as f:
+            data = json.load(f)
+    except:
+        data = {}
+    return data
+
+interactivity_trans = {
+    "pet":"摸摸",
+    "tete":"贴贴",
+    "hug":"抱抱",
+    "lift":"举高高",
+    "rua":"揉揉",
+    "nip":"捏捏",
+    "rub":"蹭蹭",
+    "kiss":"亲亲",
+    "sex":"啪啪",
+    "dirty":"骂",
+    "wife":"叫老婆",
+    "like":"示爱",
+    "kebedom":"壁咚",
+    "prpr":"舔舔",
+    "cute":"夸可爱",
+    "eat":"吃"
+}
+
+def get_transname(name:str) -> str:
+    '''返回标准英文交互名的中文翻译'''
+    return interactivity_trans.get(name,name)
