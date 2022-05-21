@@ -377,7 +377,7 @@ def attribute_count(qq) -> dict:
 
 
     try:
-        attribute_dic["HP"] = (floor(200+profession_dic["level"]**2//9+profession_dic["level"]*(statu_dic["Vit"]+100)/100) + addition_dic["HP"]) * addition_percent_dic["HP"] // 100
+        attribute_dic["HP"] = (floor(200+profession_dic["level"]**2//9+profession_dic["level"]*(statu_dic["Vit"]+100)/70) + addition_dic["HP"]) * addition_percent_dic["HP"] // 100
         attribute_dic["SP"] = (floor(30+profession_dic["level"]*(100+statu_dic["Int"])/100) + addition_dic["SP"]) * addition_percent_dic["SP"] // 100
         attribute_dic["cAtk"] = (floor(statu_dic["Str"]+(statu_dic["Str"]//10)**2+statu_dic["Dex"]//5+statu_dic["Luk"]//5) + addition_dic["cAtk"]) * addition_percent_dic["cAtk"] // 100
         attribute_dic["dAtk"] = (floor(statu_dic["Dex"]+(statu_dic["Dex"]//10)**2+statu_dic["Str"]//5+statu_dic["Luk"]//5) + addition_dic["dAtk"]) * addition_percent_dic["dAtk"] // 100

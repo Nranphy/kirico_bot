@@ -24,7 +24,7 @@
 		"Cri": 10,
 		"Def": 10,
 		"Mdef": 10,
-		"Flee": 10,
+		"Flee": 0,
 		"Aspd": 10
 	},
 	"hurt_increase": {
