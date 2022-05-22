@@ -116,8 +116,8 @@ def create_matchers():
 
         return handler
     
-    for command in commands:
-        on_regex(pattern=command.construct_pattern(),priority=7,block=True).append_handler(construct_handler(command))
+    for i,command in enumerate(commands):
+        on_regex(pattern=command.construct_pattern(),priority=20+i,block=True).append_handler(construct_handler(command))
 
 create_matchers()
 
