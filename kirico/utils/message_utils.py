@@ -1,6 +1,6 @@
-from nonebot.adapters.onebot.v11 import Bot, Message, MessageSegment, GroupMessageEvent
+from nonebot.adapters.onebot.v11 import Bot, Message, MessageSegment, GroupMessageEvent, MessageEvent
 from kirico.utils.pic_utils import get_img, save_img
-from typing import List
+from typing import List, Union
 import json
 
 
@@ -47,7 +47,7 @@ def get_message_at(msg:Message) -> list:
 
 async def send_forward_msg(
     bot: Bot,
-    event: GroupMessageEvent,
+    event: MessageEvent,
     name: str,
     uin: str,
     msgs: List[str],
@@ -59,7 +59,10 @@ async def send_forward_msg(
     def to_json(msg):
         return {"type": "node", "data": {"name": name, "uin": uin, "content": msg}}
 
-    messages = [to_json(msg) for msg in msgs]
-    await bot.call_api(
-        "send_group_forward_msg", group_id=event.group_id, messages=messages
-    )
+    if isinstance(event,GroupMessageEvent):
+        messages = [to_json(msg) for msg in msgs]
+        await bot.call_api(
+            "send_group_forward_msg", group_id=event.group_id, messages=messages
+        )
+    else:
+        await bot.send(event,"私聊与频道暂时无法发送合并消息哦~敬请期待√",at_sender=True)

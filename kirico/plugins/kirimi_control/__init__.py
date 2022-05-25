@@ -61,10 +61,10 @@ from .dismiss import *
 @run_preprocessor
 async def run_preprocessor_process(event:Event = EventParam(), matcher:Matcher = MatcherParam):
     plugin_name = matcher.plugin_name
-    group_id = event.group_id
+    group_id = getattr(event,"group_id",None)
     if isinstance(event,PrivateMessageEvent) or plugin_name==__package__.split('.')[-1]:
         pass # 禁用对本管理插件与私聊信息不生效
-    else:
+    elif isinstance(event,GroupMessageEvent):
         # 判断是否在该群禁用机器人
         if not if_groupchat_on(group_id):
             logger.info(f"[钩子函数] 本群（{group_id}）已禁用雾子...已忽略消息。")
