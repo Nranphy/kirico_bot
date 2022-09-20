@@ -1,3 +1,5 @@
+'''Kirico金币管理工具'''
+
 from nonebot import get_driver
 from nonebot.log import logger
 import os

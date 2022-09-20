@@ -25,7 +25,9 @@ __kirico_plugin_usage__ = '''
 展示的是VTB、舟、原等相关up~
 '''
 
-__kirico__plugin_visible__ = True
+__kirico_plugin_visible__ = True
+
+__kirico_plugin_default__ = True
 
 
 

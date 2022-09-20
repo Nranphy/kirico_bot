@@ -31,8 +31,9 @@ cdk可使用【/cdk xxxx】进行兑换
 '''
 
 
+__kirico_plugin_visible__ = True
 
-__kirico__plugin_visible__ = True
+__kirico_plugin_default__ = True
 
 
 

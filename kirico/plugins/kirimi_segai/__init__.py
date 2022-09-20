@@ -8,6 +8,26 @@ import time
 import os
 import json
 
+__kirico_plugin_name__ = '雾境'
+
+__kirico_plugin_author__ = 'Nranphy'
+
+__kirico_plugin_version__ = '0.1.0'
+
+__kirico_plugin_repositorie__ = ''
+
+__kirico_plugin_description__ = '群聊中的养成RPG小游戏'
+
+__kirico_plugin_usage__ = '''
+雾境相关指令和帮助请用【/雾境】查看哦
+'''
+
+
+
+__kirico_plugin_visible__ = True
+
+__kirico_plugin_default__ = True
+
 
 
 # 账号相关

@@ -7,7 +7,7 @@ from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment
 from nonebot.log import logger
 from kirico.utils.friendliness_utils import friendliness_inquire, friendliness_change, get_nickname
 from kirico.utils.file_utils import get_date_and_time, check_dir, check_file
-from kirico.utils.config_utils import get_config
+from kirico.utils.basic_utils import get_config
 
 from .words_data import words
 
@@ -131,7 +131,11 @@ def get_interactivity_data(qq:Union[str,int]) -> dict:
         data = {}
     return data
 
-interactivity_trans = {
+
+
+def get_transname(name:str) -> str:
+    '''返回标准英文交互名的中文翻译'''
+    interactivity_trans = {
     "pet":"摸摸",
     "tete":"贴贴",
     "hug":"抱抱",
@@ -148,8 +152,5 @@ interactivity_trans = {
     "prpr":"舔舔",
     "cute":"夸可爱",
     "eat":"吃"
-}
-
-def get_transname(name:str) -> str:
-    '''返回标准英文交互名的中文翻译'''
+    }
     return interactivity_trans.get(name,name)

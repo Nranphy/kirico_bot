@@ -31,7 +31,9 @@ __kirico_plugin_usage__ = '''
 若需清除现有欢迎词，请使用设置功能进行覆盖哦~
 '''
 
-__kirico__plugin_visible__ = True
+__kirico_plugin_visible__ = True
+
+__kirico_plugin_default__ = True
 
 
 

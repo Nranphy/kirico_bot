@@ -1,10 +1,12 @@
+'''Kirico好感度相关工具'''
+
 from nonebot import get_driver
 from nonebot.log import logger
 import os
 import json
 import random
 from kirico.utils.file_utils import check_dir, check_file, get_date_and_time
-from kirico.utils.config_utils import get_config
+from kirico.utils.basic_utils import get_config
 
 
 
@@ -12,7 +14,7 @@ from kirico.utils.config_utils import get_config
 
 #.env中的好感度变化记录长度设置
 
-friendliness_change_record_length = int(get_config("friendliness_change_record_length",5,"好感度工具","未找到相关配置，已取用默认值。"))
+friendliness_change_record_length = get_config("friendliness_change_record_length", 5, int)
 
 
 

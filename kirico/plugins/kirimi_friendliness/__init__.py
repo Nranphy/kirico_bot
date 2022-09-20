@@ -1,4 +1,4 @@
-from nonebot import on_command, get_bot, get_driver
+from nonebot import on_command
 from nonebot.typing import T_State
 from nonebot.params import State
 from nonebot.adapters.onebot.v11 import Bot, Event
@@ -32,7 +32,9 @@ __kirico_plugin_usage__ = '''
 请自行探索交互选项吧~
 '''
 
-__kirico__plugin_visible__ = True
+__kirico_plugin_visible__ = True
+
+__kirico_plugin_default__ = True
 
 
 

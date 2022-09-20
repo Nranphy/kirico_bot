@@ -33,7 +33,9 @@ __kirico_plugin_usage__ = '''
 可是...转生后真的比现在快乐吗...
 '''
 
-__kirico__plugin_visible__ = True
+__kirico_plugin_visible__ = True
+
+__kirico_plugin_default__ = True
 
 
 remake = on_command(

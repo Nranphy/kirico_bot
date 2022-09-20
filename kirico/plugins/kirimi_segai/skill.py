@@ -16,10 +16,10 @@ class Skill:
         '''info为读取文件得到的技能配置'''
         self.__dict__.update(info)
 
-    def count_total_hurt(self,one) -> int:
+    def count_total_hurt(self,one) -> dict:
         '''
         根据配置项内的"hurt"，"hurt_increase"结合Fighter计算初始伤害值
-        :rtype: 返回初始伤害值计算后int
+        :rtype: 返回初始伤害值各属性加成计算dict
         '''
         basic_attribute = Counter(self.hurt)
         fighter_attribute = Counter(one.attribute())
@@ -178,7 +178,7 @@ def ElfRecovery(one,two):
     name = "ElfRecovery"
     self = Skill(get_skill_info(name)[0])
     dmg = self.count_total_hurt(one)
-    for i,j in dmg.item():
+    for i,j in dmg.items():
         one.__dict__[i] += j
     return [one,two,0,[f"【{one.name}】使用了技能〖{skill_text_trans(name)[0]}({name})〗，恢复了HP和SP...\n【当前HP】{one.HP}\n【当前SP】{one.SP}"]]
 
@@ -234,7 +234,7 @@ def OrcResistance(one,two):
     name = "OrcResistance"
     self = Skill(get_skill_info(name)[0])
     dmg = self.count_total_hurt(one).values()
-    for i,j in dmg.item():
+    for i,j in dmg.items():
         one.__dict__[i] += j
     return [one,two,0,[f"【{one.name}】使用了技能〖{skill_text_trans(name)[0]}({name})〗，增加了防御力..."]]
 
@@ -261,7 +261,7 @@ def SatanPossess(one,two):
     name = "SatanPossess"
     self = Skill(get_skill_info(name)[0])
     dmg = self.count_total_hurt(one).values()
-    for i,j in dmg.item():
+    for i,j in dmg.items():
         one.__dict__[i] += j
     return [one,two,0,[f"【{one.name}】使用了技能〖{skill_text_trans(name)[0]}({name})〗，各项属性大幅增加..."]]
 
@@ -272,7 +272,7 @@ def TieflingMagic(one,two):
     name = "TieflingMagic"
     self = Skill(get_skill_info(name)[0])
     dmg = self.count_total_hurt(one).values()
-    for i,j in dmg.item():
+    for i,j in dmg.items():
         one.__dict__[i] += j
     return [one,two,0,[f"【{one.name}】使用了技能〖{skill_text_trans(name)[0]}({name})〗，各项属性大幅增加..."]]
 

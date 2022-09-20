@@ -23,7 +23,9 @@ __kirico_plugin_usage__ = '''
 
 
 
-__kirico__plugin_visible__ = True
+__kirico_plugin_visible__ = True
+
+__kirico_plugin_default__ = True
 
 
 

@@ -1,47 +1,51 @@
-import os
-import time
+'''文件操作类工具'''
+
+
+from pathlib import Path
+from typing import Union
 
 
 
 
-def check_dir(path:str):
+def check_dir(path: Union[str, Path]) -> bool:
     '''
-    创建 不存在的文件夹.
+    检查目录是否存在，并递归创建目标目录，若目录已存在则不进行更改。
+    :param path: 目标目录路径
+    :rtype: 返回该目录是否本就存在
     '''
-    if not os.path.isdir(path):
-        os.makedirs(path)
+    path = Path(path)
+    if path.is_dir():
         return True
-    return False
-
-def check_file(path:str):
-    '''
-    创建 已存在目录 下不存在的文件.
-    '''
-    if not os.path.isfile(path):
-        f = os.open(path,os.O_CREAT)
-        os.close(f)
-        return True
-    return False
-
-def rm_path(path:str):
-    '''
-    删除文件或目录，可删除非空目录.
-    '''
-    if (os.path.isdir(path)):
-        for file in os.listdir(path):
-            rm_path((os.path.join(path,file)))
-        if (os.path.exists(path)):
-            os.rmdir(path)
     else:
-        if (os.path.exists(path)):
-            os.remove(path)
+        check_dir(path.parent)
+        path.mkdir()
+        return False
 
 
-def get_date_and_time() -> list:
-    '''返回kirico标准化当前日期与时间。
-    :返回含有标准化日期(str)和时间(str)的列表。
+def check_file(path: Union[str, Path]):
     '''
-    time_str = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    date_str = time_str[:10]
-    time_str = time_str[11:]
-    return [date_str, time_str]
+    检查文件是否存在，并递归创建父目录和该文件，若文件已存在则不进行更改。
+    :param path: 目标文件路径
+    :rtype: 返回该文件是否本就存在
+    '''
+    path = Path(path)
+    if path.is_file():
+        return True
+    else:
+        check_dir(path.parent)
+        with open(path,"w"): pass
+        return False
+
+def rm_path(path:Union[str, Path]):
+    '''
+    递归删除目录或删除文件。
+    :param path: 目标路径
+    '''
+    path = Path(path)
+    if path.is_file():
+        path.unlink()
+    elif path.is_dir():
+        for i in path.iterdir():
+            rm_path(i)
+
+

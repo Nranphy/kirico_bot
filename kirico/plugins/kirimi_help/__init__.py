@@ -23,7 +23,9 @@ __kirico_plugin_usage__ = '''
 输入返回的插件序号进行插件帮助查询。
 '''
 
-__kirico__plugin_visible__ = True
+__kirico_plugin_visible__ = True
+
+__kirico_plugin_default__ = True
 
 
 
@@ -40,7 +42,7 @@ async def do_something_first(bot: Bot, event: Event, state: T_State = State()):
     # 检测插件内设置菜单是否可见，默认为不可见
     for plugin in plugins_list_origin:
         try:
-            plugin_visible = plugin.module.__getattribute__("__kirico__plugin_visible__")
+            plugin_visible = plugin.module.__getattribute__("__kirico_plugin_visible__")
         except:
             plugin_visible = False
         if plugin_visible:

@@ -4,7 +4,8 @@ from nonebot.params import State
 from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment
 from nonebot.log import logger
 from kirico.utils.friendliness_utils import friendliness_inquire, friendliness_change, get_nickname
-from kirico.utils.file_utils import get_date_and_time, check_dir, check_file
+from kirico.utils.file_utils import check_dir, check_file
+from kirico.utils.basic_utils import get_date_and_time
 
 import random
 import os

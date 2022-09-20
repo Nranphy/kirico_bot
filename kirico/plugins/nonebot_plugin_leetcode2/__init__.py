@@ -27,7 +27,9 @@ __kirico_plugin_usage__ = '''
 想看看自己的力扣信息？发送【/lc查询 xxx】来查询哦~（xxx为用户id而非昵称√）
 '''
 
-__kirico__plugin_visible__ = True
+__kirico_plugin_visible__ = True
+
+__kirico_plugin_default__ = True
 
 
 

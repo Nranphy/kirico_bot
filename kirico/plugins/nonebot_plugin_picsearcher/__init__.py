@@ -38,7 +38,9 @@ __kirico_plugin_usage__ = '''
 之后就让雾子酱来指导你吧~
 '''
 
-__kirico__plugin_visible__ = True
+__kirico_plugin_visible__ = True
+
+__kirico_plugin_default__ = True
 
 
 

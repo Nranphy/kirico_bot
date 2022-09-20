@@ -22,7 +22,9 @@ __kirico_plugin_usage__ = '''
 群内或私信发送B站链接或分享后，雾子会自动返回链接解析~
 '''
 
-__kirico__plugin_visible__ = True
+__kirico_plugin_visible__ = True
+
+__kirico_plugin_default__ = True
 
 
 

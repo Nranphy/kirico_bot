@@ -25,7 +25,7 @@ async def dismiss_process(bot:Bot, event:GroupMessageEvent, state:T_State = Stat
     if state["random_str"] == str(state["print"]):
         await dismiss.send(f"那么，雾子走了哦...\n大家以后也要开开心心的群聊...！！",at_sender=True)
         try:
-            await bot.set_group_leave(group_id=event.group_id)
+            await bot.set_group_leave(group_id=event.group_id, is_dismiss=False)
         except:
             await dismiss.finish(f"雾子现在还是群主哦...请联系管理者移交群主吧×\n雾子也不想大家分散呢...",at_sender=True)
     else:

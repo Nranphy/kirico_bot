@@ -4,6 +4,9 @@
 考虑到有设置别名的问题，用[NICK]代表别名（xxx），[NICKS]代表某人的（xxx的），发送时会自动替换。
 '''
 
+class GreetReaction:
+    pass
+
 
 words = {
     "fail":[

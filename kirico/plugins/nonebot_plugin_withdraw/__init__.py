@@ -26,7 +26,9 @@ __kirico_plugin_usage__ = '''
 当然，如果超过了限制时间...
 '''
 
-__kirico__plugin_visible__ = True
+__kirico_plugin_visible__ = True
+
+__kirico_plugin_default__ = True
 
 
 msg_ids: Dict[str, List[str]] = {}

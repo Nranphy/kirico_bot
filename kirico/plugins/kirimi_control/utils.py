@@ -7,7 +7,7 @@ from nonebot.plugin.plugin import get_loaded_plugins, get_plugin
 from nonebot.adapters.onebot.v11 import Bot, Event, Message, MessageSegment, GroupMessageEvent, GROUP_ADMIN, GROUP_OWNER
 from nonebot.exception import IgnoredException
 from nonebot.log import logger
-from kirico.utils.config_utils import get_config
+from kirico.utils.basic_utils import get_config
 from kirico.utils.file_utils import check_dir,check_file
 import os
 import json
