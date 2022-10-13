@@ -1,13 +1,11 @@
-from typing import Union
-from nonebot import on_command, on_regex, require, get_bot, get_driver
+from nonebot import on_command
 from nonebot.typing import T_State
-from nonebot.params import State, CommandArg
+from nonebot.params import State
 from nonebot.permission import SUPERUSER
-from nonebot.plugin.plugin import get_loaded_plugins, get_plugin
-from nonebot.adapters.onebot.v11 import Bot, Event, Message, MessageSegment, GroupMessageEvent, GROUP_ADMIN, GROUP_OWNER
-from nonebot.exception import IgnoredException
-from nonebot.log import logger
+from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, GROUP_ADMIN, GROUP_OWNER
 import random
+
+from kirico.utils.basic_utils import kirico_logger
 
 
 
@@ -27,6 +25,7 @@ async def dismiss_process(bot:Bot, event:GroupMessageEvent, state:T_State = Stat
         try:
             await bot.set_group_leave(group_id=event.group_id, is_dismiss=False)
         except:
-            await dismiss.finish(f"雾子现在还是群主哦...请联系管理者移交群主吧×\n雾子也不想大家分散呢...",at_sender=True)
+            await dismiss.finish(f"雾子现在还是群主哦...请联系管理者移交群主吧×",at_sender=True)
+        kirico_logger("info", "退群控制", f"雾子退出了群聊 {event.group_id}.")
     else:
-        await dismiss.finish(f"验证码错误×\n需要雾子退群的话请再输入【/退群】指令吧...",at_sender=True)
+        await dismiss.finish(f"验证码错误×\n需要雾子退群的话请再次输入【/退群】指令吧...",at_sender=True)

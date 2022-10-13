@@ -24,8 +24,6 @@ driver.register_adapter(ONEBOT_V11Adapter)
 # Please DO NOT modify this file unless you know what you are doing!
 # As an alternative, you should use command `nb` or modify `pyproject.toml` to load plugins
 nonebot.load_from_toml("pyproject.toml")
-#nonebot.load_plugin("nonebot_plugin_setu2")
-#nonebot.load_plugin("kirico.plugins.nonebot-plugin-leetcode")
 
 # Modify some config / config depends on loaded configs
 # 
@@ -34,5 +32,5 @@ nonebot.load_from_toml("pyproject.toml")
 
 
 if __name__ == "__main__":
-    nonebot.logger.warning("Always use `nb run` to start the bot instead of manually running!")
+    nonebot.logger.warning("请尽量使用指令`nb run`代替手动启动！！")
     nonebot.run(app="__mp_main__:app")

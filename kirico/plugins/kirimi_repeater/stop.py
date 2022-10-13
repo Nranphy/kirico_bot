@@ -25,7 +25,7 @@ async def stop_process(event:Event):
     group_id:int = event.group_id
     msg = event.get_message()
 
-    cnt = message_count.get(group_id, None)
+    cnt = message_count.get(group_id)
     if not cnt:
         await message.finish()
 

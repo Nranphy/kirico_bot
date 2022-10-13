@@ -1,17 +1,22 @@
 '''Kirico基础开发工具'''
 
 
-from dataclasses import dataclass, field
 from nonebot import get_driver
 from nonebot.log import logger
-from pydantic import BaseModel
-from typing import Optional, Type, Dict, Any
+from nonebot.plugin import get_plugin
+
+from dataclasses import dataclass
+from typing import Any, Optional
+from pathlib import Path
 import time
 
 
 
 config = get_driver().config
 """.env中机器人配置"""
+
+kirico_data_path = Path.cwd() / Path("/kirico/data/")
+'''雾子专有的data目录'''
 
 
 
@@ -63,11 +68,39 @@ from nonebot.plugin import PluginMetadata
 class KiricoPluginMetadata(PluginMetadata):
     """KiricoBot用插件元信息"""
     def __post__init__(self):
-        for k,v in self.extra.items():
+        kirico_plugin_metadata = {
+            "visible": False,
+            "default_enable": True
+        }.update(self.extra)
+
+        for k,v in kirico_plugin_metadata.items():
             if not hasattr(self,k):
                 setattr(self,k,v)
             else:
                 raise ValueError("插件元信息错误，extra中含有已有属性。")
+
+
+def if_plugin_exists(name:str) -> bool:
+    '''
+    检查目标插件是否存在
+    :param name: 目标插件名称
+    :rtype: 若存在则返回对应Plugin，否则返回None
+    '''
+    return get_plugin(name)
+
+
+
+def get_plugin_metadata(name:str) -> Optional[PluginMetadata]:
+    '''
+    获得目标插件的插件元信息
+    :param name: 目标插件名称
+    :rtype: 返回目标插件的Metadata，若插件不存在或没有Metadata则返回None.
+    '''
+    plugin = get_plugin(name)
+    if plugin:
+        return plugin.metadata
+    else:
+        return plugin
 
 
 

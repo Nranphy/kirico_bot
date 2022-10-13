@@ -4,7 +4,7 @@ from nonebot.params import State
 from nonebot.adapters.onebot.v11 import Bot, Event, Message, PokeNotifyEvent
 from nonebot.log import logger
 from kirico.utils.friendliness_utils import friendliness_change
-from kirico.utils.file_utils import get_date_and_time
+from kirico.utils.basic_utils import get_date_and_time
 from random import choice,random
 import json
 

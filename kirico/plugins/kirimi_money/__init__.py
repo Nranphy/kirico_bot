@@ -5,7 +5,8 @@ from nonebot.permission import SUPERUSER
 from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment, Message
 from nonebot.log import logger
 from kirico.utils.money_utils import money_inquire, money_change
-from kirico.utils.file_utils import check_dir, check_file, get_date_and_time
+from kirico.utils.file_utils import check_dir, check_file
+from kirico.utils.basic_utils import get_date_and_time
 import os
 import json
 

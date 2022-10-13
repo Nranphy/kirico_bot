@@ -5,8 +5,8 @@ from nonebot.log import logger
 import os
 import json
 import random
-from kirico.utils.file_utils import check_dir, check_file, get_date_and_time
-from kirico.utils.basic_utils import get_config
+from .file_utils import check_dir, check_file
+from .basic_utils import get_config, get_date_and_time
 
 
 

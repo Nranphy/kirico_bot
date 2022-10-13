@@ -1,10 +1,9 @@
 '''文件操作类工具'''
 
-
 from pathlib import Path
 from typing import Union
 
-
+from .basic_utils import get_config
 
 
 def check_dir(path: Union[str, Path]) -> bool:
@@ -33,10 +32,12 @@ def check_file(path: Union[str, Path]):
         return True
     else:
         check_dir(path.parent)
-        with open(path,"w"): pass
+        with open(path, "w"):
+            pass
         return False
 
-def rm_path(path:Union[str, Path]):
+
+def rm_path(path: Union[str, Path]):
     '''
     递归删除目录或删除文件。
     :param path: 目标路径
@@ -49,3 +50,11 @@ def rm_path(path:Union[str, Path]):
             rm_path(i)
 
 
+# Kirico用json存档
+# 直接提供存档接口，需要接入数据库请直接修改相关接口。
+
+save_path = get_config("save_path", Path("kirico/data/"), Path)
+
+
+def save_json(name: str, ):
+    pass

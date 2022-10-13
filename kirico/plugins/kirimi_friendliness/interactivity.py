@@ -6,8 +6,8 @@ from nonebot.matcher import Matcher
 from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment
 from nonebot.log import logger
 from kirico.utils.friendliness_utils import friendliness_inquire, friendliness_change, get_nickname
-from kirico.utils.file_utils import get_date_and_time, check_dir, check_file
-from kirico.utils.basic_utils import get_config
+from kirico.utils.file_utils import check_dir, check_file
+from kirico.utils.basic_utils import get_config, get_date_and_time
 
 from .words_data import words
 

@@ -98,8 +98,8 @@ def point_counter(fu:int=20, han:int=1) -> list:
     :param han: 和牌的番数
     :返回查表成功与否布尔值、庄家和牌点数（荣和和自摸）元组、子家和牌点数（荣和和自摸）元组、备注。
     '''
-    oya_point = oya_point_form.get((fu,han),None)
-    co_point = co_point_form.get((fu,han),None)
+    oya_point = oya_point_form.get((fu,han))
+    co_point = co_point_form.get((fu,han))
     if oya_point:
         return [True,oya_point, co_point,"==="]
     elif han==5 or (han==4 and fu>=40) or (han==3 and fu>=70):
