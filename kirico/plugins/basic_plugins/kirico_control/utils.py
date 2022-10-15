@@ -82,7 +82,9 @@ def if_plugin_on(groupid:Union[str,int], name:str) -> bool:
     switch_info = get_switch_status(groupid)
     if name not in switch_info:
         metadata = get_plugin_metadata(name)
-        if metadata and metadata.default_enable:
+        if metadata and hasattr(metadata, "default_enable") and metadata.default_enable:
+            return True
+        elif not metadata or not hasattr(metadata, "default_enable"): # 对于非Kirico插件的默认值
             return True
         else:
             return False
