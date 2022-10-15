@@ -1,4 +1,4 @@
-from nonebot.adapters.onebot.v11 import Event, PrivateMessageEvent, Message
+from nonebot.adapters.onebot.v11 import PrivateMessageEvent, MessageEvent
 
 from kirico.utils.basic_utils import get_config, kirico_logger
 from kirico.utils.message_utils import is_text
@@ -17,12 +17,12 @@ if repeat_require_least_times <= 1:
     kirico_logger("warning", "反复读姬", "当前触发打断复读次数（repeat_stop_require_least_times）小于等于1，会导致bot对每一句话都会发送打断复读文本。")
 
 @message.handle()
-async def stop_process(event:Event):
+async def stop_process(event:MessageEvent):
     # 私聊信息单独判断
     if isinstance(event, PrivateMessageEvent):
-        await message.finish("笨蛋~雾子才不会和你一起复读呢ww")
+        await message.finish()
 
-    group_id:int = event.group_id
+    group_id:str = str(event.group_id)
     msg = event.get_message()
 
     cnt = message_count.get(group_id)
@@ -30,15 +30,15 @@ async def stop_process(event:Event):
         await message.finish()
 
     if cnt >= repeat_stop_require_least_times:
+        message_count[group_id] = 0
         if is_text(msg) and len(msg.extract_plain_text()) < repeat_stop_shortest_length:
             await message.finish()
         else:
-            message_count[group_id] = 0
             words = (
                 "打断复读~！！！",
                 "再次打断！！"
             )
-            if is_text(msg) and msg.extract_plain_text() != words[0]:
-                await message.finish(words[0])
-            else:
+            if is_text(msg) and msg.extract_plain_text().strip() == words[0]:
                 await message.finish(words[1])
+            else:
+                await message.finish(words[0])

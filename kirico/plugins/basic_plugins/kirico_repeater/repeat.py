@@ -1,5 +1,5 @@
 from nonebot import on_message
-from nonebot.adapters.onebot.v11 import Event, PrivateMessageEvent, Message
+from nonebot.adapters.onebot.v11 import MessageEvent, PrivateMessageEvent, Message
 
 from kirico.utils.basic_utils import get_config, kirico_logger
 from kirico.utils.message_utils import is_text, message_equal
@@ -16,11 +16,11 @@ repeat_max_times = get_config("repeat_max_times", 1, int)
 if repeat_require_least_times <= 1:
     kirico_logger("warning", "复读姬", "当前触发复读次数（repeat_require_least_times）小于等于1，会导致bot复读每一句话，或将导致风控。")
 
-message_temp:dict[int,Message] = {}
+message_temp:dict[str,Message] = {}
 '''各群消息临时存放'''
-message_count:dict[int,int] = {}
+message_count:dict[str,int] = {}
 '''其他成员进行复读的次数'''
-repeat_count:dict[int,int] = {}
+repeat_count:dict[str,int] = {}
 '''bot在某群的发送复读次数'''
 
 
@@ -28,12 +28,12 @@ message = on_message(priority=99, block=False)
 
 
 @message.handle()
-async def repeater_process(event:Event):
+async def repeater_process(event:MessageEvent):
     # 单独处理私聊消息
     if isinstance(event, PrivateMessageEvent):
-        await message.skip()
+        await message.finish()
     
-    group_id:int = event.group_id
+    group_id:str = str(event.group_id)
     
     new_message = event.get_message()
 
