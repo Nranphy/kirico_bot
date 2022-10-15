@@ -1,6 +1,5 @@
 from nonebot import on_command, get_bot, get_driver, on_startswith
 from nonebot.typing import T_State
-from nonebot.params import State
 from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment, GroupMessageEvent, MessageEvent
 from nonebot.log import logger
 from kirico.utils.money_utils import KiricoMoney
@@ -19,7 +18,7 @@ register_information = on_command("register", aliases={"注册","注册账号","
 
 
 @register_information.handle()
-async def register_prepare(bot:Bot, event:MessageEvent, state:T_State=State()):
+async def register_prepare(bot:Bot, event:MessageEvent):
     qq = event.get_user_id()
     msgs = ['已注册用户需要先【/删除帐号】才可以重新注册哦~','====分割线===='] if role_exist(qq) else []
     msgs += ['【前排提醒】\n本小游戏的初衷为制作一个“文字RPG游戏”，并非单纯依凭机器人做群聊小游戏。\n所以，本游戏会尽力避免图片出现，包括但不限于长文本图片、游戏物品图片、角色操作图片。\n敬请谅解。\n=========',
@@ -250,7 +249,7 @@ delete = on_command("删除账号",aliases={"删除帐号","帐号删除","账�
 
 
 @delete.handle()
-async def delete_account(bot:Bot,event:MessageEvent,state:T_State=State()):
+async def delete_account(bot:Bot,event:MessageEvent,state:T_State):
     qq = event.get_user_id()
     if not role_exist(qq):
         await delete.finish("你还未拥有角色哦~\n请输入【/注册账号】了解详细吧~",at_sender=True)
@@ -259,7 +258,7 @@ async def delete_account(bot:Bot,event:MessageEvent,state:T_State=State()):
     await delete.send(f"诶...？要删除账号吗？\n请输入【{state['random_str']}】进行确认...",at_sender=True)
 
 @delete.got("print")
-async def delete_account_success(bot:Bot,event:MessageEvent,state:T_State=State()):
+async def delete_account_success(bot:Bot,event:MessageEvent,state:T_State):
     if state["random_str"] == str(state["print"]):
         profession = read_profession(event.get_user_id())
         total_exp = 0

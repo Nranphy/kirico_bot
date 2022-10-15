@@ -1,6 +1,5 @@
 from nonebot import on_command
 from nonebot.typing import T_State
-from nonebot.params import State
 from nonebot.permission import SUPERUSER
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, GROUP_ADMIN, GROUP_OWNER
 import random
@@ -13,13 +12,13 @@ dismiss = on_command("dismiss",aliases={"退群","退出群聊"},priority=1,bloc
 
 
 @dismiss.handle()
-async def dismiss_comfirm(bot:Bot, event:GroupMessageEvent, state:T_State = State()):
+async def dismiss_comfirm(bot:Bot, event:GroupMessageEvent, state:T_State):
     string = 'qwertyuiopasdfghjklzxcvbnm1234567890'
     state["random_str"] = ''.join([random.choice(string) for x in range(5)])
     await dismiss.send(f"真的要雾子退群吗...？\n请输入【{state['random_str']}】确认哦...",at_sender=True)
 
 @dismiss.got("print")
-async def dismiss_process(bot:Bot, event:GroupMessageEvent, state:T_State = State()):
+async def dismiss_process(bot:Bot, event:GroupMessageEvent, state:T_State):
     if state["random_str"] == str(state["print"]):
         await dismiss.send(f"那么，雾子走了哦...\n大家以后也要开开心心的群聊...！！",at_sender=True)
         try:

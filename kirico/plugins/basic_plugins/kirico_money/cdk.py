@@ -1,6 +1,5 @@
 from nonebot import on_command
-from nonebot.typing import T_State
-from nonebot.params import State, CommandArg
+from nonebot.params import CommandArg
 from nonebot.permission import SUPERUSER
 from nonebot.adapters.onebot.v11 import Bot, Event, Message
 
@@ -21,7 +20,7 @@ _cdk_data_pathname = "cdk"
 # cdk兑换
 
 @cdk_exchange.handle()
-async def cdk_exchange_process(bot: Bot, event: Event, arg:Message = CommandArg(), state: T_State = State()):
+async def cdk_exchange_process(bot: Bot, event: Event, arg:Message = CommandArg()):
     qq = event.get_user_id()
     cdk = arg.extract_plain_text().strip()
 
@@ -51,7 +50,7 @@ async def cdk_exchange_process(bot: Bot, event: Event, arg:Message = CommandArg(
 # cdk添加
 
 @cdk_setting.handle()
-async def cdk_setting_process(bot: Bot, event: Event, arg:Message = CommandArg(), state: T_State = State()):
+async def cdk_setting_process(bot: Bot, event: Event, arg:Message = CommandArg()):
     '''指令格式为 /cdk添加 cdk名 雾团子数 日期'''
     command_ls = arg.extract_plain_text().strip().split()
     if not command_ls:

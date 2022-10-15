@@ -1,6 +1,5 @@
 from nonebot import on_command, require, get_bot, get_driver
 from nonebot.typing import T_State
-from nonebot.params import State
 from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment
 from nonebot.log import logger
 from .get_problem_data import *
@@ -95,7 +94,7 @@ async def send_today_problem(bot: Bot,event:Event):
 
 #搜索题目
 @request_search.handle()
-async def parse(bot: Bot, event: Event, state: T_State = State()):
+async def parse(bot: Bot, event: Event, state: T_State):
     temp = str(event.get_message()).split()
     try:
         state["keyword"] = temp[1]
@@ -104,7 +103,7 @@ async def parse(bot: Bot, event: Event, state: T_State = State()):
 
 
 @request_search.got("keyword",prompt="请输出要在leetcode查找的内容哦~\n可为题号、题目、题干内容哒")
-async def send_today_problem(bot: Bot,event:Event,  state: T_State = State()):
+async def send_today_problem(bot: Bot,event:Event,  state: T_State):
     try:
         search_title = get_search_title(state["keyword"])
         if search_title:
@@ -189,14 +188,14 @@ async def send_random_problem(bot: Bot,event:Event):
 
 #查询用户信息
 @request_user.handle()
-async def parse(bot: Bot, event: Event, state: T_State = State()):
+async def parse(bot: Bot, event: Event, state: T_State):
     temp = str(event.get_message()).split()
     if temp[1]:
         state["user_Slug"] = temp[1]
 
 
 @request_user.got("user_Slug",prompt="请输出要在leetcode查询的用户哦~\n请写入用户ID，而非用户昵称哦~")
-async def send_user_data(bot: Bot,event:Event,  state: T_State = State()):
+async def send_user_data(bot: Bot,event:Event,  state: T_State):
     try:
         #详细的返回json信息请查阅json/文件夹内的文本，或者参见get_user_data.py
         user_public_profile = get_user_public_profile(state["user_Slug"])

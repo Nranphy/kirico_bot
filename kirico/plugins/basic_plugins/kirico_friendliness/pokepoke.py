@@ -1,6 +1,5 @@
 from nonebot import get_bot, on_notice, on_command
 from nonebot.typing import T_State
-from nonebot.params import State
 from nonebot.adapters.onebot.v11 import Bot, Event, Message, PokeNotifyEvent
 
 from random import choice,random
@@ -11,7 +10,7 @@ from kirico.utils.friendliness_utils import KiricoFriendliness
 poke_command = on_command("poke", aliases={"戳","戳一戳","戳他"}, priority=10, block=True)
 
 @poke_command.handle()
-async def __pokewho__(event: Event, state: T_State = State()):
+async def __pokewho__(event: Event, state: T_State):
     message = str(event.get_message()).split()
     try:
         state["item"] = message[1]
@@ -19,7 +18,7 @@ async def __pokewho__(event: Event, state: T_State = State()):
         pass
 
 @poke_command.got("item", prompt="要雾子戳谁呢~\nat他吧~")
-async def pokeother(bot: Bot, event: Event, state: T_State = State()):
+async def pokeother(bot: Bot, event: Event, state: T_State):
     state["item"] = str(state["item"])
     if state["item"].isnumeric():
         pass

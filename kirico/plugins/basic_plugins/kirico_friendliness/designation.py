@@ -1,6 +1,6 @@
 from nonebot import on_command
 from nonebot.typing import T_State
-from nonebot.params import State, CommandArg
+from nonebot.params import CommandArg
 from nonebot.adapters.onebot.v11 import Bot, Event, Message, GroupMessageEvent
 
 from kirico.utils.friendliness_utils import KiricoFriendliness
@@ -17,14 +17,14 @@ special_title_setting_request = on_command("设置头衔", aliases={"头衔设�
 
 
 @nickname_setting_request.handle()
-async def nickname_setting_prepare(bot:Bot, event:Event, arg:Message=CommandArg(), state:T_State = State()):
+async def nickname_setting_prepare(bot:Bot, event:Event, state:T_State, arg:Message=CommandArg()):
     arg = arg.extract_plain_text().strip()
     if arg:
         state["nickname"] = arg
 
 
 @nickname_setting_request.got("nickname",prompt="想要雾子怎样称呼你呢~")
-async def nickname_setting(bot:Bot, event:Event, state:T_State = State()):
+async def nickname_setting(bot:Bot, event:Event, state:T_State):
     qq = event.get_user_id()
     if isinstance(state["nickname"], Message):
         new_nickname = state["nickname"].extract_plain_text()
@@ -41,7 +41,7 @@ async def nickname_setting(bot:Bot, event:Event, state:T_State = State()):
 
 
 @special_title_setting_request.handle()
-async def special_title_setting_prepare(bot:Bot, event:GroupMessageEvent, arg:Message=CommandArg(), state:T_State = State()):
+async def special_title_setting_prepare(bot:Bot, event:GroupMessageEvent, state:T_State, arg:Message=CommandArg()):
     special_title = arg.extract_plain_text().strip()
 
     qq = event.get_user_id()

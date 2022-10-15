@@ -7,7 +7,7 @@ from typing import List, Tuple, Optional
 from nonebot import on_command
 from nonebot.rule import to_me
 from nonebot.typing import T_State
-from nonebot.params import ArgPlainText, State
+from nonebot.params import ArgPlainText
 from nonebot.adapters.onebot.v11 import (
     Bot,
     MessageEvent,
@@ -47,7 +47,7 @@ remake = on_command(
 
 
 @remake.handle()
-async def _(state: T_State = State()):
+async def _(state: T_State):
     life_ = Life()
     life_.load()
     talents = life_.rand_talents(10)
@@ -59,7 +59,7 @@ async def _(state: T_State = State()):
 
 
 @remake.got("nums")
-async def _(reply: str = ArgPlainText("nums"), state: T_State = State()):
+async def _(state: T_State, reply: str = ArgPlainText("nums")):
     def conflict_talents(talents: List[Talent]) -> Optional[Tuple[Talent, Talent]]:
         for (t1, t2) in itertools.combinations(talents, 2):
             if t1.exclusive_with(t2):
@@ -107,8 +107,8 @@ async def _(reply: str = ArgPlainText("nums"), state: T_State = State()):
 async def _(
     bot: Bot,
     event: MessageEvent,
+    state: T_State,
     reply: str = ArgPlainText("prop"),
-    state: T_State = State(),
 ):
     life_: Life = state["life"]
     talents: List[Talent] = state["talents_selected"]

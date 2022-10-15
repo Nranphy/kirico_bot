@@ -1,7 +1,6 @@
 from nonebot import on_command, on_notice, on_regex
 from nonebot.permission import SUPERUSER
 from nonebot.typing import T_State
-from nonebot.params import State
 from nonebot.adapters.onebot.v11 import Bot, Message, MessageSegment, GroupMessageEvent, GroupIncreaseNoticeEvent, GROUP_ADMIN, GROUP_OWNER
 from nonebot.utils import DataclassEncoder
 
@@ -58,7 +57,7 @@ async def send_welcome_msg(bot:Bot, event:GroupIncreaseNoticeEvent):
 
 # 修改入群欢迎配置
 @welcome_setting.handle()
-async def welcome_setting_prepare(bot:Bot, event:GroupMessageEvent, state:T_State = State()):
+async def welcome_setting_prepare(bot:Bot, event:GroupMessageEvent):
     await welcome_setting.send((
         "已进入入群欢迎信息编辑模式~\n"
         "请在下一段消息中输入所有欢迎信息√\n"
@@ -66,7 +65,7 @@ async def welcome_setting_prepare(bot:Bot, event:GroupMessageEvent, state:T_Stat
 
 
 @welcome_setting.got("welcome")
-async def welcome_setting_process(bot:Bot, event:GroupMessageEvent, state:T_State = State()):
+async def welcome_setting_process(bot:Bot, event:GroupMessageEvent, state:T_State):
     path = get_path(_welcome_data_pathname) / f"{event.group_id}"
     new_msg = await edit_img_message(state["welcome"], path)
 
@@ -112,7 +111,7 @@ async def preview_welcome_msg(bot:Bot, event:GroupMessageEvent):
 
 # 开关群欢迎
 @welcome_switch.handle()
-async def welcome_switch_prepare(bot:Bot, event:GroupMessageEvent, state:T_State = State()):
+async def welcome_switch_prepare(bot:Bot, event:GroupMessageEvent, state:T_State):
     switch_command = event.get_message().extract_plain_text()[1:3]
     if switch_command == "开启":
         state["command"] = True
@@ -124,7 +123,7 @@ async def welcome_switch_prepare(bot:Bot, event:GroupMessageEvent, state:T_State
 
 
 @welcome_switch.handle()
-async def welcome_switch_action(bot:Bot, event:GroupMessageEvent, state:T_State = State()):
+async def welcome_switch_action(bot:Bot, event:GroupMessageEvent, state:T_State):
     path = get_path(_welcome_data_pathname) / f"{event.group_id}"
 
     try:

@@ -1,6 +1,5 @@
 from nonebot import on_command
 from nonebot.typing import T_State
-from nonebot.params import State
 from nonebot.plugin import get_loaded_plugins, Plugin
 from nonebot.adapters.onebot.v11 import Bot, Event
 
@@ -10,7 +9,7 @@ help_request = on_command("help",aliases={"帮助","菜单","功能"}, priority=
 
 
 @help_request.handle()
-async def do_something_first(bot: Bot, event: Event, state: T_State = State()):
+async def do_something_first(bot: Bot, event: Event, state: T_State):
     plugins_list = [plugin for plugin in sorted(list(get_loaded_plugins()), key=lambda x:x.name) if plugin.metadata and hasattr(plugin.metadata, "visible") and plugin.metadata.visible]
     state["plugins"] = plugins_list
 
@@ -29,7 +28,7 @@ async def do_something_first(bot: Bot, event: Event, state: T_State = State()):
 
 
 @help_request.got("target")
-async def get_plugin_help(bot: Bot, event: Event, state: T_State = State()):
+async def get_plugin_help(bot: Bot, event: Event, state: T_State):
     # 对用户给予字符串进行处理并判断
     target:str = state["target"].extract_plain_text()
     if target.isdigit():

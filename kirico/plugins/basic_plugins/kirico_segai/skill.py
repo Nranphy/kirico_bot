@@ -1,7 +1,6 @@
 from typing import Counter, List
 from nonebot import on_command, get_bot, get_driver
 from nonebot.typing import T_State
-from nonebot.params import State
 from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment, Message
 from nonebot.log import logger
 from .utils import attribute_count, elements_react, get_equipment_info, get_skill_info, read_basic, read_profession, skill_text_trans

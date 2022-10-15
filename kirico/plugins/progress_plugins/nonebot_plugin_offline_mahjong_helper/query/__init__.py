@@ -4,7 +4,7 @@
 
 from nonebot import on_command
 from nonebot.typing import T_State
-from nonebot.params import State, CommandArg
+from nonebot.params import CommandArg
 from nonebot.adapters.onebot.v11 import Bot, Event, Message, MessageSegment
 from nonebot.log import logger
 
@@ -31,7 +31,7 @@ majsoul_query = on_command("雀魂查询",aliases={"查询雀魂","雀魂战绩"
 
 
 @majsoul_query.handle()
-async def majsoul_query_ensure_index(bot: Bot, event: Event, state:T_State=State(), arg:Message=CommandArg()):
+async def majsoul_query_ensure_index(bot: Bot, event: Event, state:T_State, arg:Message=CommandArg()):
     name = arg.extract_plain_text().strip()
     user_search_pl4 = json.loads(httpx.get(f"https://4.data.amae-koromo.com/api/v2/pl4/search_player/{name}?limit=3").content)
     user_search_pl3 = json.loads(httpx.get(f"https://4.data.amae-koromo.com/api/v2/pl3/search_player/{name}?limit=3").content)
@@ -58,7 +58,7 @@ async def majsoul_query_ensure_index(bot: Bot, event: Event, state:T_State=State
 
 
 @majsoul_query.got("index")
-async def majsoul_query_precess(bot: Bot, event: Event, state:T_State=State()):
+async def majsoul_query_precess(bot: Bot, event: Event, state:T_State):
     try:
         if isinstance(state["index"],Message):
             state["index"] = int(state["index"].extract_plain_text().strip())-1

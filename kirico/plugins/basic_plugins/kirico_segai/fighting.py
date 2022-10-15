@@ -1,7 +1,7 @@
 from typing import Counter, List
 from nonebot import on_command, get_bot, get_driver
 from nonebot.typing import T_State
-from nonebot.params import State, CommandArg
+from nonebot.params import CommandArg
 from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment, Message, GroupMessageEvent, MessageEvent
 from nonebot.log import logger
 from kirico.utils.message_utils import get_message_at, send_forward_msg
@@ -214,7 +214,7 @@ f"""敌方
 fight_request = on_command("决斗",aliases={"战斗","挑战"},priority=7,block=True)
 
 @fight_request.handle()
-async def fight_prepare(bot:Bot,event:MessageEvent,arg:Message=CommandArg(),state:T_State=State()):
+async def fight_prepare(bot:Bot,event:MessageEvent,state:T_State,arg:Message=CommandArg()):
     state["self"] = event.get_user_id()
     if arg:
         state["enemy"] = arg
@@ -222,7 +222,7 @@ async def fight_prepare(bot:Bot,event:MessageEvent,arg:Message=CommandArg(),stat
         await fight_request.send("请问要和谁决斗呢~？\n可发送at或者QQ号~",at_sender=True)
     
 @fight_request.got("enemy")
-async def fight_process(bot:Bot,event:MessageEvent,state:T_State=State()):
+async def fight_process(bot:Bot,event:MessageEvent,state:T_State):
     state["enemy"] = get_message_at(state["enemy"])
     if len(state["enemy"])>=2:
         await fight_request.send("对于多个决斗目标，只会与系统检测到的第一个进行决斗哦~",at_sender=True)

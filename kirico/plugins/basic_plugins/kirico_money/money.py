@@ -1,6 +1,4 @@
 from nonebot import on_command
-from nonebot.typing import T_State
-from nonebot.params import State
 from nonebot.adapters.onebot.v11 import Bot, Event
 
 from kirico.utils.money_utils import KiricoMoney
@@ -10,7 +8,7 @@ from kirico.utils.money_utils import KiricoMoney
 money_request = on_command("money", aliases={"查询雾团子", "查询金钱", "雾团子查询", "金钱查询"}, block=True)
 
 @money_request.handle()
-async def money_inquire_request(bot: Bot, event: Event, state: T_State = State()):
+async def money_inquire_request(bot: Bot, event: Event):
     qq = event.get_user_id()
     money_info = KiricoMoney(qq)
     await money_request.finish((

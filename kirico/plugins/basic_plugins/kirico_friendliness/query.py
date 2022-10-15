@@ -1,6 +1,4 @@
 from nonebot import on_command
-from nonebot.typing import T_State
-from nonebot.params import State
 from nonebot.adapters.onebot.v11 import Bot, Event
 
 from kirico.utils.friendliness_utils import KiricoFriendliness
@@ -15,7 +13,7 @@ friendliness_request = on_command("friendliness", aliases={"查询好感度", "�
 
 
 @friendliness_request.handle()
-async def friendliness_inquire_request(bot: Bot, event: Event, state: T_State = State()):
+async def friendliness_inquire_request(bot: Bot, event: Event):
     qq = event.get_user_id()
     friendliness_info = KiricoFriendliness(qq)
     interactivity_data = get_interactivity_data(qq)

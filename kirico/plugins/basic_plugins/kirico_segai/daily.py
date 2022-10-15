@@ -1,6 +1,6 @@
 from nonebot import on_command, get_bot, get_driver
 from nonebot.typing import T_State
-from nonebot.params import State,CommandArg
+from nonebot.params import CommandArg
 from nonebot.adapters.onebot.v11 import Bot, Event, MessageSegment, Message
 from nonebot.log import logger
 from kirico.utils.file_utils import check_dir, check_file
@@ -19,11 +19,11 @@ import json
 buy_exp = on_command("购买经验",aliases={"经验购买"},priority=9,block=True)
 
 @buy_exp.handle()
-async def buy_exp_process1(bot:Bot,event:Event,arg:Message = CommandArg(),state:T_State=State()):
+async def buy_exp_process1(bot:Bot,event:Event,state:T_State,arg:Message = CommandArg()):
     state["num"] = arg
 
 @buy_exp.got("num")
-async def buy_exp_process2(bot:Bot,event:Event,state:T_State=State()):
+async def buy_exp_process2(bot:Bot,event:Event,state:T_State):
     qq = event.get_user_id()
     if not role_exist(qq):
         await buy_exp.finish("购买失败...你还未注册哦×\n请输入【/注册】查看详细",at_sender=True)
@@ -53,7 +53,7 @@ async def buy_exp_process2(bot:Bot,event:Event,state:T_State=State()):
 add_point = on_command("加点",aliases={"素质加点"},priority=9,block=True)
 
 @add_point.handle()
-async def add_point_process1(bot:Bot,event:Event,arg:Message = CommandArg(),state:T_State=State()):
+async def add_point_process1(bot:Bot,event:Event,arg:Message = CommandArg()):
     qq = event.get_user_id()
     if not role_exist(qq):
         await add_point.finish("加点失败...你还未注册哦×\n请输入【/注册】查看详细~",at_sender=True)
@@ -92,7 +92,7 @@ async def add_point_process1(bot:Bot,event:Event,arg:Message = CommandArg(),stat
 wear_equipment = on_command("穿上装备",aliases={"穿戴装备","武器装备","装备武器","更换装备","装备更换","装备更改","更换武器","武器更换"},priority=7,block=True)
 
 @wear_equipment.handle()
-async def wear_equipment_process(bot:Bot,event:Event,arg:Message=CommandArg(),state:T_State=State()):
+async def wear_equipment_process(bot:Bot,event:Event,state:T_State,arg:Message=CommandArg()):
     qq = event.get_user_id()
     if not role_exist(qq):
         await wear_equipment.finish("你还未注册哦~\n请输入【/注册账号】了解详细吧~",at_sender=True)
@@ -128,7 +128,7 @@ async def wear_equipment_process(bot:Bot,event:Event,arg:Message=CommandArg(),st
 clear_equipment = on_command("脱下装备",aliases={"武器取下","取下武器","换下装备","装备脱下","放下武器"},priority=7,block=True)
 
 @clear_equipment.handle()
-async def clear_equipment_process(bot:Bot,event:Event,arg:Message=CommandArg(),state:T_State=State()):
+async def clear_equipment_process(bot:Bot,event:Event,arg:Message=CommandArg()):
     qq = event.get_user_id()
     if not role_exist(qq):
         await clear_equipment.finish("你还未注册哦~\n请输入【/注册账号】了解详细吧~",at_sender=True)
@@ -153,7 +153,7 @@ async def clear_equipment_process(bot:Bot,event:Event,arg:Message=CommandArg(),s
 change_skill = on_command("更换技能",aliases={"技能更换","更改技能","携带技能","技能携带","添加技能","技能添加"},priority=7,block=True)
 
 @change_skill.handle()
-async def change_skill_process(bot:Bot,event:Event,arg:Message=CommandArg(),state:T_State=State()):
+async def change_skill_process(bot:Bot,event:Event,state:T_State,arg:Message=CommandArg()):
     qq = event.get_user_id()
     if not role_exist(qq):
         await change_skill.finish("你还未注册哦~\n请输入【/注册账号】了解详细吧~",at_sender=True)
@@ -187,7 +187,7 @@ async def change_skill_process(bot:Bot,event:Event,arg:Message=CommandArg(),stat
 unwear_skill = on_command("清除技能",aliases={"技能清除","技能取下","取下技能"},priority=7,block=True)
 
 @unwear_skill.handle()
-async def unwear_skill_process(bot:Bot,event:Event,arg:Message=CommandArg(),state:T_State=State()):
+async def unwear_skill_process(bot:Bot,event:Event,state:T_State,arg:Message=CommandArg()):
     qq = event.get_user_id()
     if not role_exist(qq):
         await unwear_skill.finish("你还未注册哦~\n请输入【/注册账号】了解详细吧~",at_sender=True)
@@ -207,7 +207,7 @@ async def unwear_skill_process(bot:Bot,event:Event,arg:Message=CommandArg(),stat
 clear_skill = on_command("清空技能",aliases={"技能清空"},priority=7,block=True)
 
 @clear_skill.handle()
-async def clear_skill_process(bot:Bot,event:Event,state:T_State=State()):
+async def clear_skill_process(bot:Bot,event:Event,state:T_State):
     qq = event.get_user_id()
     if not role_exist(qq):
         await clear_skill.finish("你还未注册哦~\n请输入【/注册账号】了解详细吧~",at_sender=True)
@@ -223,7 +223,7 @@ async def clear_skill_process(bot:Bot,event:Event,state:T_State=State()):
 jobchange = on_command("转职",aliases={"职业变更","变更职业"},priority=7,block=7)
 
 @jobchange.handle()
-async def jobchange_prepare(bot:Bot, event:Event, arg:Message=CommandArg(), state:T_State=State()):
+async def jobchange_prepare(bot:Bot, event:Event, state:T_State, arg:Message=CommandArg()):
     qq = event.get_user_id()
     if not role_exist(qq):
         await jobchange.finish("你还未注册哦~\n请输入【/注册账号】了解详细吧~",at_sender=True)
@@ -238,7 +238,7 @@ async def jobchange_prepare(bot:Bot, event:Event, arg:Message=CommandArg(), stat
         await jobchange.send(f"当前可以转职为【{arg}】哦~\n是否要进行转职呢？\n输入【yes】或者【是】进行确认。",at_sender=True)
 
 @jobchange.got("ok")
-async def jobchange_process(bot:Bot, event:Event, state:T_State=State()):
+async def jobchange_process(bot:Bot, event:Event, state:T_State):
     qq = event.get_user_id()
     state["ok"] = state["ok"].extract_plain_text().strip()
     if state["ok"] != "是" and state["ok"] != "yes":

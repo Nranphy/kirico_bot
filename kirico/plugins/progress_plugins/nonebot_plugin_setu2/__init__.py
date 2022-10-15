@@ -9,7 +9,6 @@ from nonebot.adapters.onebot.v11 import (Bot, Event, Message,
 from nonebot.adapters.onebot.v11.permission import GROUP, PRIVATE_FRIEND
 from nonebot.log import logger
 from nonebot.typing import T_State
-from nonebot.params import State
 from .get_data import get_setu
 from .setu_message import *
 from .json_manager import *
@@ -31,7 +30,7 @@ cdTime = (config.setu2_cd if config.setu2_cd else 60)
 
 
 @setu.handle()
-async def _(bot: Bot, event: Event, state: T_State = State()):
+async def _(bot: Bot, event: Event, state: T_State):
 #    if isinstance(event, GroupMessageEvent) and event.group_id not in config.setu2_enable_groups:
 #        return
     global mid
