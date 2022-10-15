@@ -1,0 +1,38 @@
+{
+    "name": "lift",
+    "name_tran": "举起",
+    "keywords":[
+        "举","举起","举高"
+    ],
+    "friendliness":100,
+    "data":{
+        "note": "把雾子举高高",
+        "success": {
+            "average": 10,
+            "deviation": 10,
+            "note": "",
+            "reply": [
+                "笨...笨蛋！！快放雾子下来！！",
+                "诶...诶！！！！！",
+                "不...要掉下来了啦！！",
+                "不...不要在空中挠痒痒！！"
+            ]
+        },
+        "fail":{
+            "average": 5,
+            "deviation": 10,
+            "note": "，但被拒绝了...",
+            "reply": [
+                
+            ]
+        },
+        "over":{
+            "average": 0,
+            "deviation": 10,
+            "note": "，有点过分了...",
+            "reply": [
+                
+            ]
+        }
+    }
+}

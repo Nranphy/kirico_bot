@@ -9,14 +9,15 @@ from hashlib import md5
 from pathlib import Path
 from typing import Optional, Union
 
-from .basic_utils import get_config, kirico_logger
-from .file_utils import check_dir
+from .basic_utils import kirico_logger
+from .file_utils import check_dir, kirico_cache_path
 
 
 
-temp_img_path = get_config("temp_img_path", Path("data/temp/img/"), Path)
+kirico_img_temp_path = kirico_cache_path / "img/"
+'''图片文件临时目录'''
 
-check_dir(temp_img_path)
+check_dir(kirico_img_temp_path)
 
 
 
@@ -36,7 +37,7 @@ async def get_img(url: str) -> Optional[bytes]:
         return None
 
 
-def save_img(img: bytes, path: Union[str,Path] = temp_img_path):
+def save_img(img: bytes, path: Union[str,Path] = kirico_img_temp_path):
     '''
     保存bytes变量中的图片。
     :param img: 需要保存的图片

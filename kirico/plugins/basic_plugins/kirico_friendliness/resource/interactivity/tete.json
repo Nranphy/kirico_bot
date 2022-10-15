@@ -1,0 +1,40 @@
+{
+    "name": "tete",
+    "name_tran": "贴贴",
+    "keywords":[
+        "贴","贴贴"
+    ],
+    "friendliness":50,
+    "data":{
+        "note": "贴贴雾子",
+        "success": {
+            "average": 15,
+            "deviation": 5,
+            "note": "",
+            "reply": [
+                "只...只能贴一下哦！",
+                "贴贴贴贴[NICK]...♡",
+                "[NICK]...爱你哦~♡",
+                "心里总有种暖暖的感觉呢...[NICK]♡"
+            ]
+        },
+        "fail":{
+            "average": -10,
+            "deviation": 5,
+            "note": "，但被拒绝了...",
+            "reply": [
+                
+            ]
+        },
+        "over":{
+            "average": 0,
+            "deviation": 5,
+            "note": "，有点过分了...",
+            "reply": [
+                "贴贴太久了啦...！",
+                "等..等会再来吧（逃）",
+                "贴贴太紧了...有点难为情呢×"
+            ]
+        }
+    }
+}

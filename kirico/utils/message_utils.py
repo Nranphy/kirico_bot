@@ -7,20 +7,23 @@ from nonebot_plugin_htmlrender import md_to_pic
 from typing import List, Union
 from pathlib import Path
 
-from .pic_utils import get_img, save_img, get_pic_md5, temp_img_path
+from .pic_utils import get_img, save_img, get_pic_md5, kirico_img_temp_path
+from .file_utils import check_dir
 
 
 
 
 
 
-async def edit_img_message(msg:Message, path: Union[str,Path] = temp_img_path) -> Message:
+async def edit_img_message(msg:Message, path: Union[str,Path] = kirico_img_temp_path) -> Message:
     '''
     对传入Message进行处理，下载图片并替换图片data地址。
     :param msg: 传入的消息段
-    :param path: 存储图片的目录，请注意“/”结尾。默认为.env中所配置图片临时目录。
-    :返回新Message，失败则返回False.
+    :param path: 存储图片的目录。默认为.env中所配置图片临时目录
+    :返回新Message，失败则返回False
     '''
+    path = Path(path)
+    check_dir(path)
     new_msg = Message()
     for seg in msg:
         if seg.type == "image":
@@ -29,9 +32,9 @@ async def edit_img_message(msg:Message, path: Union[str,Path] = temp_img_path) -
             if filename and url:
                 img = await get_img(url)
                 if img:
-                    path = path + f"{filename}"
-                    await save_img(img, path)
-                    seg.data["file"] = f"file:///"+path
+                    path = path / f"{filename}"
+                    save_img(img, path)
+                    seg.data["file"] = f"file:///" + str(path)
                 else:
                     return False
         new_msg.append(seg)

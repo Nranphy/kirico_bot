@@ -1,99 +1,76 @@
 '''Kirico好感度相关工具'''
 
-from nonebot import get_driver
-from nonebot.log import logger
-import os
-import json
+from typing import Union
 import random
-from .file_utils import check_dir, check_file
-from .basic_utils import get_config, get_date_and_time
+from .file_utils import load_data, save_data
+from .basic_utils import get_config, KiricoDatetime
 
 
-
-
-
-#.env中的好感度变化记录长度设置
 
 friendliness_change_record_length = get_config("friendliness_change_record_length", 5, int)
+'''.env中的好感度变化记录长度设置'''
+
+friendliness_data_pathname = "friendliness"
 
 
+class KiricoFriendliness:
+    '''Kirico好感度对象'''
 
+    user_id:int
+    nickname:str
+    count:int
+    change_log:list[int]
+    interactivity_count:dict
 
-def friendliness_change(qq,average:int=0,deviation:int=10,date:str=None,time:str=None,note:str='不知道为什么...') -> list:
-    '''
-    按某标准及最大偏差增长好感度，可记录好感度变化日期时间与备注,并返回随机出的好感度变化值和存储后的好感度值。
-    :param qq: 需要增长好感度的qq号
-    :param average: 增长的中间值
-    :param deviation: 最大偏差
-    :param date: 好感度变化日期（默认为当时日期）
-    :param time: 好感度变化时间（默认为当时时间）
-    :param note: 好感度变化记录
-    :增长的好感度将会在（average ± deviation）范围内取值，当average < deviation时可能取值为负
-    '''
-    if not date:date = get_date_and_time()[0]
-    if not time:time = get_date_and_time()[1]
-    json_path = os.getcwd()+f"/kirico/data/friendliness/{qq}.json"
-    check_dir(os.getcwd()+f"/kirico/data/friendliness/")
-    check_file(json_path)
-    with open(json_path,"r") as f: # 仅读取
-        try:
-            friendliness = json.load(f)
-            friendliness_count = friendliness.get("count",0)
-            friendliness_change = friendliness.get("change",[])
-        except Exception:
-            friendliness = dict()
-            friendliness_count = 0
-            friendliness_change = list()
-    
-    increase_count = random.randint(average-deviation,average+deviation)
-    friendliness_count += increase_count
-    friendliness_change.append([date,time,note,increase_count])
+    now_date:KiricoDatetime
 
-    if len(friendliness_change) > friendliness_change_record_length:  # 历史记录长度控制
-        friendliness_change = friendliness_change[-friendliness_change_record_length:]
+    def __init__(self, user_id: Union[str, int]):
+        friendliness_data = load_data(friendliness_data_pathname, user_id)
+        self.user_id = str(user_id)
+        self.nickname = friendliness_data.get("nickname", '')
+        self.count = friendliness_data.get("count", 0)
+        self.change_log = friendliness_data.get("change_log", [])
+        self.interactivity_count = friendliness_data.get("interactivity_count",{})
+        self.now_date = KiricoDatetime()
 
-    friendliness["count"] = friendliness_count
-    friendliness["change"] = friendliness_change
-    
-    with open(json_path,"w+") as f: # 再次打开，以w+模式，便于覆盖数据
-        json.dump(friendliness, f)
-    return [increase_count,friendliness_count]
+    def to_dict(self):
+        return {
+            "user_id": self.user_id,
+            "nickname": self.nickname,
+            "count": self.count,
+            "change_log": self.change_log,
+            "interactivity_count": self.interactivity_count
+        }
 
+    def save_data(self):
+        '''保存好感度信息'''
+        save_data(friendliness_data_pathname, self.user_id, self.to_dict())
 
+    def change(self, average:int, deviation:int, note:str='不知道为什么...') -> tuple[int]:
+        '''
+        按某标准及最大偏差增长好感度，可记录好感度变化日期时间与备注。
+        :param average: 增长的中间值
+        :param deviation: 最大偏差
+        :param note: 好感度变化记录
+        :rtype: 返回好感度变化值与变化后好感度元组
+        :增长的好感度将会在（average ± deviation）范围内取值，当average < deviation时可能取值为负
+        '''
+        increase_count = random.randint(average-deviation,average+deviation)
+        self.count += increase_count
 
-def friendliness_inquire(qq) -> list:
-    '''
-    查询某QQ号的好感度相关信息。
-    :param qq: 查询的qq号
-    :返回好感度数(int)、好感度改变记录(list)列表.
-    '''
-    json_path = os.getcwd()+f"/kirico/data/friendliness/{qq}.json"
-    check_dir(os.getcwd()+f"/kirico/data/friendliness/")
-    check_file(json_path)
-    with open(json_path,"r") as f:
-        try:
-            friendliness = json.load(f)
-            friendliness_count = friendliness.get("count",0)
-            friendliness_change = friendliness.get("change",[])
-        except Exception:
-            logger.info("[好感查询]解析json文件失败，该用户曾未拥有好感度或json格式有误。")
-            friendliness = dict()
-            friendliness_count = 0
-            friendliness_change = list()
-    return [friendliness_count, friendliness_change]
+        self.change_log.append([self.now_date.date, self.now_date.time, note, increase_count])
+        if len(self.change_log) > friendliness_change_record_length:
+            self.change_log = self.change_log[-friendliness_change_record_length:]
+        self.save_data()
+        return (increase_count, self.count)
 
+    def set_nickname(self, nickname:str):
+        '''设定nickname'''
+        self.nickname = nickname
+        self.save_data()
 
-
-def get_nickname(qq):
-    '''
-    对传入的QQ查询别名
-    :param qq: 需要查询的qq
-    :rtype: 如查询到别名则返回别名str，否则返回空字符串。
-    '''
-    try:
-        with open(os.getcwd()+f"/kirico/data/nickname.json", "r") as f:
-            data = json.load(f)
-    except:
-            data = dict()
-    nickname = data.get(qq, '')
-    return nickname
+    def interactivity_recode(self, action:str):
+        '''增加一次指定交互次数'''
+        cnt = self.interactivity_count.get(action, 0)
+        self.interactivity_count[action] = cnt+1
+        self.save_data()

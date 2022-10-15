@@ -1,87 +1,59 @@
-'''Kirico金币管理工具'''
+'''Kirico金币相关工具'''
 
-from nonebot import get_driver
-from nonebot.log import logger
-import os
-import json
+from typing import Union
 import random
-from .file_utils import check_dir, check_file
-from .basic_utils import get_date_and_time
+from .file_utils import load_data, save_data
+from .basic_utils import get_config, KiricoDatetime
 
 
 
+money_change_record_length = get_config("money_change_record_length", 5, int)
+'''.env中的金币变化记录长度设置'''
 
-#.env中的金钱变化记录长度设置
-try:
-    money_change_record_length = int(get_driver().config.money_change_record_length)
-except Exception:
-    logger.info("[金钱工具]未找到相关配置，已取用默认值。")
-    money_change_record_length = 5
+money_data_pathname = "money"
 
 
+class KiricoMoney:
+    '''Kirico雾团子金币对象'''
 
+    user_id:int
+    count:int
+    change_log:list[int]
 
-def money_change(qq,average:int=0,deviation:int=0,date:str=None,time:str=None,note:str='不知道为什么...') -> list:
-    '''
-    按某标准及最大偏差增长金钱，可记录金钱变化日期时间与备注,并返回随机出的金钱变化值和存储后的金钱值。
-    :param qq: 需要增长金钱的qq号
-    :param average: 增长的中间值
-    :param deviation: 最大偏差
-    :param date: 金钱变化日期（默认为当时日期）
-    :param time: 金钱变化时间（默认为当时时间）
-    :param note: 金钱变化记录
-    :增长的金钱将会在（average ± deviation）范围内取值，当average < deviation时可能取值为负
-    :增长值为负且剩余金钱不足时，将返回[0,当前金钱值]，不会做出任何更改。
-    '''
-    if not date:date = get_date_and_time()[0]
-    if not time:time = get_date_and_time()[1]
-    json_path = os.getcwd()+f"/kirico/data/money/{qq}.json"
-    check_dir(os.getcwd()+f"/kirico/data/money/")
-    check_file(json_path)
-    with open(json_path,"r") as f: # 仅读取
-        try:
-            money = json.load(f)
-            money_count = money.get("count",0)
-            money_change = money.get("change",[])
-        except Exception:
-            money = dict()
-            money_count = 0
-            money_change = list()
-    
-    increase_count = random.randint(average-deviation,average+deviation)
-    money_count += increase_count
-    if money_count<0:
-        return [0,money_count-increase_count]
-    money_change.append([date,time,note,increase_count])
+    now_date:KiricoDatetime
 
-    if len(money_change) > money_change_record_length:  # 历史记录长度控制
-        money_change = money_change[-money_change_record_length:]
+    def __init__(self, user_id: Union[str, int]):
+        money_data = load_data(money_data_pathname, user_id)
+        self.user_id = str(user_id)
+        self.count = money_data.get("count", 0)
+        self.change_log = money_data.get("change_log", [])
+        self.now_date = KiricoDatetime()
 
-    money["count"] = money_count
-    money["change"] = money_change
+    def to_dict(self):
+        return {
+            "user_id": self.user_id,
+            "count": self.count,
+            "change_log": self.change_log
+        }
 
-    with open(json_path,"w+") as f: # 再次打开，以w+模式，便于覆盖数据
-        json.dump(money, f)
-    return [increase_count,money_count]
+    def save_data(self):
+        '''保存金币信息'''
+        save_data(money_data_pathname, self.user_id, self.to_dict())
 
+    def change(self, average:int, deviation:int, note:str='不知道为什么...') -> tuple[int]:
+        '''
+        按某标准及最大偏差改变金币，可记录金币变化日期时间与备注。
+        :param average: 增长的中间值
+        :param deviation: 最大偏差
+        :param note: 金币变化记录
+        :rtype: 返回金币变化值与变化后金币元组
+        :增长的金币将会在（average ± deviation）范围内取值，当average < deviation时可能取值为负
+        '''
+        increase_count = random.randint(average-deviation,average+deviation)
+        self.count += increase_count
 
-def money_inquire(qq) -> list:
-    '''
-    查询某QQ号的金钱相关信息。
-    :param qq: 查询的qq号
-    :返回金钱数(int)、金钱改变记录(list)列表.
-    '''
-    json_path = os.getcwd()+f"/kirico/data/money/{qq}.json"
-    check_dir(os.getcwd()+f"/kirico/data/money/")
-    check_file(json_path)
-    with open(json_path,"r") as f:
-        try:
-            money = json.load(f)
-            money_count = money.get("count",0)
-            money_change = money.get("change",[])
-        except Exception:
-            logger.info("[金钱查询]解析json文件失败，该用户曾未拥有金钱或json格式有误。")
-            money = dict()
-            money_count = 0
-            money_change = list()
-    return [money_count, money_change]
+        self.change_log.append([self.now_date.date, self.now_date.time, note, increase_count])
+        if len(self.change_log) > money_change_record_length:
+            self.change_log = self.change_log[-money_change_record_length:]
+        self.save_data()
+        return (increase_count, self.count)
