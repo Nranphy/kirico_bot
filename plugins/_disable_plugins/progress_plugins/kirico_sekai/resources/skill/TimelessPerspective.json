@@ -1,0 +1,69 @@
+{
+	"type": 4,
+	"detail": {
+		"name": "TimelessPerspective",
+		"transname": "永恒视角",
+		"des": "精灵们总是与自然相通...",
+		"story": "精灵几乎是最长寿的物种，他们在岁月中慢慢体会到了自己近乎永恒的力量。",
+		"function": "百分比被动加强精灵的各类属性。"
+	},
+	"limit": {
+		"level": 70,
+		"job": [],
+		"race": ["Dragonborn","Half_Elf","Half_Orc","Human","Unknown","Tiefling"]
+	},
+	"element": "None",
+	"consumeSP": 0,
+	"hurt": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"hurt_increase": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition_percent": {
+		"HP": 20,
+		"SP": 20,
+		"cAtk": 10,
+		"dAtk": 10,
+		"Matk": 10,
+		"Hit": 10,
+		"Cri": 10,
+		"Def": 10,
+		"Mdef": 10,
+		"Flee": 10,
+		"Aspd": 10
+	}
+}

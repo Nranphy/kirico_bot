@@ -1,0 +1,25 @@
+{
+	"race": "Human",
+	"transrace": "人类",
+	"description": "一个平凡的种族，寿命短暂、法术不精、武力不高，却拥有着最平衡的属性。人类只要朝着某个方向前行，总是能超越其他的物种。",
+	"initial_status": {
+		"Str": 5,
+		"Agi": 5,
+		"Vit": 5,
+		"Int": 5,
+		"Dex": 5,
+		"Luk": 5
+	},
+	"initial_equipments": ["0","None","None","None","None"],
+	"skill": [
+		[10,"CombatMaster"],
+		[10,"ArcheryMaster"],
+		[10,"MagicMaster"],
+		[10,"DefenseMaster"],
+		[10,"ToolUsed"],
+		[20,"GreedyIncrease"],
+		[20,"BeliefIncrease"],
+		[40,"Enlightenment"],
+		[70,"AllMaster"]
+	]
+}

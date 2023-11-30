@@ -1,0 +1,38 @@
+{
+    "name": "prpr",
+    "name_tran": "舔舔",
+    "keywords":[
+        "舔","pr","舔舔"
+    ],
+    "friendliness":130,
+    "data":{
+        "note": "舔了舔雾子",
+        "success": {
+            "average": 20,
+            "deviation": 10,
+            "note": "",
+            "reply": [
+                "雾子...要...要融化了啦!!",
+                "唔...舌头...",
+                "好啦好啦！！快停下来！",
+                "好痒...噗哈哈哈...快停下！！"
+            ]
+        },
+        "fail":{
+            "average": -10,
+            "deviation": 5,
+            "note": "，但被拒绝了...",
+            "reply": [
+                
+            ]
+        },
+        "over":{
+            "average": 5,
+            "deviation": 5,
+            "note": "，有点过分了...",
+            "reply": [
+                
+            ]
+        }
+    }
+}

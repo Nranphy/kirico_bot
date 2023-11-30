@@ -1,0 +1,69 @@
+{
+	"type": 3,
+	"detail": {
+		"name": "VineMagic",
+		"transname": "藤蔓戏法",
+		"des": "精灵们总是与自然相通...",
+		"story": "随着精灵的成长，他们可以一定程度上施法操纵自然。",
+		"function": "操控藤蔓控制敌方数回合，被动加强自身法术相关属性。"
+	},
+	"limit": {
+		"level": 35,
+		"job": [],
+		"race": ["Dragonborn","Half_Orc","Human","Unknown","Tiefling"]
+	},
+	"element": "Earth",
+	"consumeSP": 20,
+	"hurt": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"hurt_increase": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition": {
+		"HP": 100,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 70,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 30,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition_percent": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 5,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	}
+}

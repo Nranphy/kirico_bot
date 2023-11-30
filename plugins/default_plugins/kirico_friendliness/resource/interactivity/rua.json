@@ -1,0 +1,39 @@
+{
+    "name": "rua",
+    "name_tran": "揉揉",
+    "keywords":[
+        "揉","揉揉"
+    ],
+    "friendliness":130,
+    "data":{
+        "note": "揉了揉雾子",
+        "success": {
+            "average": 20,
+            "deviation": 5,
+            "note": "",
+            "reply": [
+                "请...请温柔的揉揉哦~",
+                "好哦~不要揉奇怪的地方啦！！",
+                "再揉揉 雾子就戳你肚子哦！！",
+                "揉揉...好舒服...♡",
+                "揉吧揉吧...但是只能这一次哦?"
+            ]
+        },
+        "fail":{
+            "average": 5,
+            "deviation": 5,
+            "note": "，但被拒绝了...",
+            "reply": [
+                
+            ]
+        },
+        "over":{
+            "average": 5,
+            "deviation": 5,
+            "note": "，有点过分了...",
+            "reply": [
+
+            ]
+        }
+    }
+}

@@ -1,0 +1,69 @@
+{
+	"type": 3,
+	"detail": {
+		"name": "Escape",
+		"transname": "逃脱",
+		"des": "逃离或为上策。",
+		"story": "世界上所有的冒险家似乎都会这样一个技能...",
+		"function": "逃脱战局，使本场战斗变为平局。"
+	},
+	"limit": {
+		"level": 1,
+		"job": [],
+		"race": []
+	},
+	"element": "Normal",
+	"consumeSP": 0,
+	"hurt": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"hurt_increase": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 30,
+		"dAtk": 30,
+		"Matk": 30,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 20,
+		"Aspd": 0
+	},
+	"addition": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 5,
+		"Aspd": 0
+	},
+	"addition_percent": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 10,
+		"Aspd": 0
+	}
+}

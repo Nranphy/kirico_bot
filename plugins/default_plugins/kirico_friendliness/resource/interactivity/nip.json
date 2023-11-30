@@ -1,0 +1,37 @@
+{
+    "name": "nip",
+    "name_tran": "捏捏",
+    "keywords":[
+        "捏捏","捏","掐"
+    ],
+    "friendliness":120,
+    "data":{
+        "note": "捏了捏雾子",
+        "success": {
+            "average": 20,
+            "deviation": 10,
+            "note": "",
+            "reply": [
+                "别捏啦别捏啦！！",
+                "唔...雾子的脸被捏了...",
+                "疼...疼疼疼...快放手了啦！！"
+            ]
+        },
+        "fail":{
+            "average": 5,
+            "deviation": 10,
+            "note": "，但被拒绝了...",
+            "reply": [
+                
+            ]
+        },
+        "over":{
+            "average": 10,
+            "deviation": 10,
+            "note": "，有点过分了...",
+            "reply": [
+
+            ]
+        }
+    }
+}

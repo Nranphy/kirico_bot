@@ -1,0 +1,40 @@
+{
+    "name": "rub",
+    "name_tran": "蹭蹭",
+    "keywords":[
+        "蹭","蹭蹭"
+    ],
+    "friendliness":200,
+    "data":{
+        "note": "蹭了蹭雾子",
+        "success": {
+            "average": 25,
+            "deviation": 10,
+            "note": "",
+            "reply": [
+                "嗯~嗯~♡",
+                "[NICKS]蹭蹭~舒服呢~",
+                "噗哈哈哈~[NICK]！！好痒的...!!",
+                "好孩子~好孩子~让雾子治愈你吧~",
+                "[NICK]真是粘人呢~（摸头）",
+                "雾子的身上...温暖吗~？"
+            ]
+        },
+        "fail":{
+            "average": 5,
+            "deviation": 15,
+            "note": "，但被拒绝了...",
+            "reply": [
+                
+            ]
+        },
+        "over":{
+            "average": 10,
+            "deviation": 15,
+            "note": "，有点过分了...",
+            "reply": [
+
+            ]
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "name": "eat",
+    "name_tran": "吃",
+    "keywords":[
+        "啃","吃"
+    ],
+    "friendliness":400,
+    "data":{
+        "note": "吃吃雾子",
+        "success": {
+            "average": 20,
+            "deviation": 5,
+            "note": "",
+            "reply": [
+                "诶？请...请温柔一点对雾子哦...",
+                "不...不可以这样！",
+                "雾子才不能吃呢！！（敲头）",
+                "雾子的味道...好吃吗？",
+                "快...快停下...好疼...",
+                "请...请品尝雾子吧♡"
+            ]
+        },
+        "fail":{
+            "average": -10,
+            "deviation": 5,
+            "note": "，但被拒绝了...",
+            "reply": [
+                
+            ]
+        },
+        "over":{
+            "average": 3,
+            "deviation": 5,
+            "note": "，有点过分了...",
+            "reply": [
+                
+            ]
+        }
+    }
+}

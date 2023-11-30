@@ -1,0 +1,24 @@
+{
+	"job": "Acolyte",
+	"transrace": "服事",
+	"unaccept_rage": [],
+	"accept_level": 10,
+	"accept_job": ["Novice"],
+	"initial_addition": {
+		"HP": 10,
+		"SP": 5,
+		"cAtk": 5,
+		"dAtk": 5,
+		"Matk": 15,
+		"Hit": 5,
+		"Cri": 5,
+		"Def": 5,
+		"Mdef": 5,
+		"Flee": 5,
+		"Aspd": 5
+	},
+	"initial_equipments": ["None","None","None","None","None"],
+	"skill": [],
+	"optional_skill": [],
+	"jobchange": []
+}

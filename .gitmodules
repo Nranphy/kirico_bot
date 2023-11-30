@@ -1,0 +1,3 @@
+[submodule "plugins/special_plugins/kirico_plugin_sekaiju"]
+	path = plugins/special_plugins/kirico_plugin_sekaiju
+	url = https://github.com/Nranphy/kirico_plugin_sekaiju

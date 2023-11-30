@@ -1,0 +1,76 @@
+{
+	"type": 0,
+	"detail": {
+		"name": "This is the Chinese name of the skill.",
+		"transname": "技能中文名",
+		"des": "A short description of the skill.",
+		"story": "You can write the story about it.",
+		"function": "中文描述效果"
+	},
+	"limit": {
+		"level": 1,
+		"job": ["which can't use it."],
+		"race": ["which can't use it."]
+	},
+	"element": "which you want.",
+	"consumeSP": 0,
+	"hurt": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"hurt_increase": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition_percent": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 0,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	}
+}
+
+item为编号
+type为0即近战物理，1为远程物理，2为法术，3为加成等，4为被动
+hurt自带伤害属性
+hurt_increase根据属性伤害加深
+addtion数值增加属性
+addition_percent百分比增加属性

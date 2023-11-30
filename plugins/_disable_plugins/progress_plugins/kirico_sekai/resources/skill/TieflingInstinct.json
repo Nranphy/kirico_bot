@@ -1,0 +1,69 @@
+{
+	"type": 4,
+	"detail": {
+		"name": "TieflingInstinct",
+		"transname": "恶魔本能",
+		"des": "恶魔们天生的恶魔之力...",
+		"story": "恶魔们天生有着智慧的加成。",
+		"function": "被动加强自身SP和法术攻击力和法术防御力。"
+	},
+	"limit": {
+		"level": 20,
+		"job": [],
+		"race": ["Elf","Dragonborn","Human","Unknown","Half_Elf","Half_Orc"]
+	},
+	"element": "Normal",
+	"consumeSP": 0,
+	"hurt": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 10,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"hurt_increase": {
+		"HP": 0,
+		"SP": 0,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 90,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 0,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition": {
+		"HP": 50,
+		"SP": 30,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 30,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 20,
+		"Flee": 0,
+		"Aspd": 0
+	},
+	"addition_percent": {
+		"HP": 0,
+		"SP": 50,
+		"cAtk": 0,
+		"dAtk": 0,
+		"Matk": 30,
+		"Hit": 0,
+		"Cri": 0,
+		"Def": 0,
+		"Mdef": 20,
+		"Flee": 0,
+		"Aspd": 0
+	}
+}

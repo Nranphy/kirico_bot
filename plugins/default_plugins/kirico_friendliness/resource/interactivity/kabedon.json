@@ -1,0 +1,41 @@
+{
+    "name": "kabedon",
+    "name_tran": "壁咚",
+    "keywords":[
+        "壁咚"
+    ],
+    "friendliness":150,
+    "data":{
+        "note": "壁咚了雾子",
+        "success": {
+            "average": 20,
+            "deviation": 20,
+            "note": "",
+            "reply": [
+                "诶...欸欸欸？？///w///",
+                "请...请不要这样啦..",
+                "诶——雾子...会害羞的啦...",
+                "太...太近了啦",
+                "讨...讨厌！！",
+                "脸...脸好近——（心跳声）",
+                "[NICK]...这是要干什么呢...（小声）"
+            ]
+        },
+        "fail":{
+            "average": -15,
+            "deviation": 20,
+            "note": "，但被拒绝了...",
+            "reply": [
+                
+            ]
+        },
+        "over":{
+            "average": 5,
+            "deviation": 5,
+            "note": "，有点过分了...",
+            "reply": [
+
+            ]
+        }
+    }
+}
