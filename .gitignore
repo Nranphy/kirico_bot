@@ -3,3 +3,4 @@ __pycache__
 /logs
 /data
 /.env.dev
+/plugins/_disable_plugins/*
